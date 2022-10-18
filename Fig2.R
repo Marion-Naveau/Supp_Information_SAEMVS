@@ -725,11 +725,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("SimuAC1_1_rho3.Rdata","SimuAC1_2_rho3.Rdata","SimuAC1_3_rho3.Rdata","SimuAC2_1_rho3.Rdata",
-            "SimuAC2_2_rho3.Rdata","SimuAC2_3_rho3.Rdata","SimuAC3_1_rho3.Rdata","SimuAC3_2_rho3.Rdata",
-            "SimuAC3_3_rho3.Rdata","SimuAC4_1_rho3.Rdata","SimuAC4_2_rho3.Rdata","SimuAC4_3_rho3.Rdata")
+file_name=c("betahat_simuAC1_1_rho3.Rdata","betahat_simuAC1_2_rho3.Rdata","betahat_simuAC1_3_rho3.Rdata",
+            "betahat_simuAC2_1_rho3.Rdata","betahat_simuAC2_2_rho3.Rdata","betahat_simuAC2_3_rho3.Rdata",
+            "betahat_simuAC3_1_rho3.Rdata","betahat_simuAC3_2_rho3.Rdata","betahat_simuAC3_3_rho3.Rdata",
+            "betahat_simuAC4_1_rho3.Rdata","betahat_simuAC4_2_rho3.Rdata","betahat_simuAC4_3_rho3.Rdata")
 
-file_name_iid=c("Res_simuA10.Rdata","Res_simuA11.Rdata","Res_simuA12.Rdata")
+file_name_iid=c("betahat_simuA10.Rdata","betahat_simuA11.Rdata","betahat_simuA12.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -745,17 +746,9 @@ nb_FP_FN=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name[k])
-  resTot=res$resTot
-
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  load(file_name[k])   #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                       #the selected nu0 for one p for one correlations scenario for one dataset among the S
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -786,17 +779,10 @@ nb_FP_FN_iid=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name_iid[k])
-  resTot=res$resTot
+  load(file_name_iid[k]) #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                         #the selected nu0 for one p for the iid scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -840,11 +826,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("SimuAC1_4_rho3.Rdata","SimuAC1_5_rho3.Rdata","SimuAC1_6_rho3.Rdata","SimuAC2_4_rho3.Rdata",
-            "SimuAC2_5_rho3.Rdata","SimuAC2_6_rho3.Rdata","SimuAC3_4_rho3.Rdata","SimuAC3_5_rho3.Rdata",
-            "SimuAC3_6_rho3.Rdata","SimuAC4_4_rho3.Rdata","SimuAC4_5_rho3.Rdata","SimuAC4_6_rho3.Rdata")
+file_name=c("betahat_simuAC1_4_rho3.Rdata","betahat_simuAC1_5_rho3.Rdata","betahat_simuAC1_6_rho3.Rdata",
+             "betahat_simuAC2_4_rho3.Rdata","betahat_simuAC2_5_rho3.Rdata","betahat_simuAC2_6_rho3.Rdata",
+             "betahat_simuAC3_4_rho3.Rdata","betahat_simuAC3_5_rho3.Rdata","betahat_simuAC3_6_rho3.Rdata",
+             "betahat_simuAC4_4_rho3.Rdata","betahat_simuAC4_5_rho3.Rdata","betahat_simuAC4_6_rho3.Rdata")
 
-file_name_iid=c("Res_simuA16.Rdata","Res_simuA17.Rdata","Res_simuA18.Rdata")
+file_name_iid=c("betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -860,17 +847,10 @@ nb_FP_FN=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name[k])
-  resTot=res$resTot
+  load(file_name[k]) #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                     #the selected nu0 for one p for one correlations scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -902,17 +882,10 @@ nb_FP_FN_iid=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name_iid[k])
-  resTot=res$resTot
+  load(file_name_iid[k])    #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                            #the selected nu0 for one p for the iid scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -955,11 +928,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("SimuAC1_1.Rdata","SimuAC1_2.Rdata","SimuAC1_3.Rdata","SimuAC2_1.Rdata",
-            "SimuAC2_2.Rdata","SimuAC2_3.Rdata","SimuAC3_1.Rdata","SimuAC3_2.Rdata",
-            "SimuAC3_3.Rdata","SimuAC4_1.Rdata","SimuAC4_2.Rdata","SimuAC4_3.Rdata")
+file_name=c("betahat_simuAC1_1.Rdata","betahat_simuAC1_2.Rdata","betahat_simuAC1_3.Rdata",
+            "betahat_simuAC2_1.Rdata","betahat_simuAC2_2.Rdata","betahat_simuAC2_3.Rdata",
+            "betahat_simuAC3_1.Rdata","betahat_simuAC3_2.Rdata","betahat_simuAC3_3.Rdata",
+            "betahat_simuAC4_1.Rdata","betahat_simuAC4_2.Rdata","betahat_simuAC4_3.Rdata")
 
-file_name_iid=c("Res_simuA10.Rdata","Res_simuA11.Rdata","Res_simuA12.Rdata")
+file_name_iid=c("betahat_simuA10.Rdata","betahat_simuA11.Rdata","betahat_simuA12.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -975,17 +949,10 @@ nb_FP_FN=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name[k])
-  resTot=res$resTot
+  load(file_name[k])   #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                       #the selected nu0 for one p for one correlations scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -1016,17 +983,10 @@ nb_FP_FN_iid=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name_iid[k])
-  resTot=res$resTot
+  load(file_name_iid[k])    #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                            #the selected nu0 for one p for the iid scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -1068,11 +1028,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("SimuAC1_4.Rdata","SimuAC1_5.Rdata","SimuAC1_6.Rdata","SimuAC2_4.Rdata",
-            "SimuAC2_5.Rdata","SimuAC2_6.Rdata","SimuAC3_4.Rdata","SimuAC3_5.Rdata",
-            "SimuAC3_6.Rdata","SimuAC4_4.Rdata","SimuAC4_5.Rdata","SimuAC4_6.Rdata")
+file_name=c("betahat_simuAC1_4.Rdata","betahat_simuAC1_5.Rdata","betahat_simuAC1_6.Rdata",
+             "betahat_simuAC2_4.Rdata","betahat_simuAC2_5.Rdata","betahat_simuAC2_6.Rdata",
+             "betahat_simuAC3_4.Rdata","betahat_simuAC3_5.Rdata","betahat_simuAC3_6.Rdata",
+             "betahat_simuAC4_4.Rdata","betahat_simuAC4_5.Rdata","betahat_simuAC4_6.Rdata")
 
-file_name_iid=c("Res_simuA16.Rdata","Res_simuA17.Rdata","Res_simuA18.Rdata")
+file_name_iid=c("betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -1088,17 +1049,10 @@ nb_FP_FN=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name[k])
-  resTot=res$resTot
+  load(file_name[k])    #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                        #the selected nu0 for one p for one correlations scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
@@ -1129,17 +1083,10 @@ nb_FP_FN_iid=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name_iid[k])
-  resTot=res$resTot
+  load(file_name_iid[k])    #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                            #the selected nu0 for one p for the iid scenario for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
+  p=length(betahat_select[,1])
 
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3

@@ -135,6 +135,7 @@ for (s in 1:S){
 }
 
 betahat_select=beta_tildehat_select[-1,]
+save(betahat_select,file="betahat_test_Fig1.Rdata")
 
 ## On the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -167,7 +168,6 @@ nb_includ
 
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
-
 ######################### Script for Figure 1 #########################
 
 rm(list=ls())
@@ -176,10 +176,10 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("Res_simuA1.Rdata","Res_simuA2.Rdata","Res_simuA3.Rdata","Res_simuA4.Rdata","Res_simuA5.Rdata",
-            "Res_simuA6.Rdata","Res_simuA7.Rdata","Res_simuA8.Rdata","Res_simuA9.Rdata","Res_simuA10.Rdata",
-            "Res_simuA11.Rdata","Res_simuA12.Rdata","Res_simuA13.Rdata","Res_simuA14.Rdata","Res_simuA15.Rdata",
-            "Res_simuA16.Rdata","Res_simuA17.Rdata","Res_simuA18.Rdata")
+file_name=c("betahat_simuA1.Rdata","betahat_simuA2.Rdata","betahat_simuA3.Rdata","betahat_simuA4.Rdata","betahat_simuA5.Rdata",
+            "betahat_simuA6.Rdata","betahat_simuA7.Rdata","betahat_simuA8.Rdata","betahat_simuA9.Rdata","betahat_simuA10.Rdata",
+            "betahat_simuA11.Rdata","betahat_simuA12.Rdata","betahat_simuA13.Rdata","betahat_simuA14.Rdata","betahat_simuA15.Rdata",
+            "betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
 
 N=length(file_name)
 nb_exact_model=rep(0,N)
@@ -190,18 +190,10 @@ nb_FP_FN=rep(0,N)
 S=100
 
 for (k in 1:N){
-  load(file_name[k])
-  resTot=res$resTot
+  load(file_name[k]) #betahat_select in R^(p x S): each column is the value of the MAP estimator of beta for
+                     #the selected nu0 for one combination of parameters (simuAk) for one dataset among the S
 
-  p=length(resTot[[1]]$betachap_select)-1
-  beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
-
-  for (s in 1:S){
-    beta_tildehat_select[,s]=resTot[[s]]$betachap_select
-  }
-
-  betahat_select=beta_tildehat_select[-1,]
-
+  p=length(betahat_select[,1])
   Model_size=colSums(betahat_select!=0)      #Sizes of model selected for the S datasets
   v=which(Model_size==3)  #Sets of datasets for which SAEMVS has selected a model of size 3
 
