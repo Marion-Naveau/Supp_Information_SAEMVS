@@ -312,7 +312,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
   loglike_unique=rep(NA,l)  #idem for the log-likelihood
   for (ll in 1:l){
     I=which(unique_support[,ll]==1)
-    print(length(I))
     d=length(I)
     if (d!=0){
       res=SAEM_EMV(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init = param_init,hyperparam=list(tau=0.98,psi=psi),I=I,s=s)
