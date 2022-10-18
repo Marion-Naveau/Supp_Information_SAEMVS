@@ -1,3 +1,12 @@
+-   [Supporting information for the SAEMVS
+    procedure](#supporting-information-for-the-saemvs-procedure)
+-   [Application of SAEMVS on a detailed
+    example](#application-of-saemvs-on-a-detailed-example)
+    -   [Model simulation](#model-simulation)
+    -   [Convergence of the MCMC-SAEM
+        algorithm](#convergence-of-the-mcmc-saem-algorithm)
+    -   [Spike-and-slab regularisation plot and model
+        selection](#spike-and-slab-regularisation-plot-and-model-selection)
 
 # Supporting information for the SAEMVS procedure
 
@@ -10,7 +19,7 @@
    * [Convergence of the MCMC-SAEM algorithm](#convergence-of-the-mcmc-saem-algorithm)
    * [Spike-and-slab regularisation plot and model selection](#spike-and-slab-regularisation-plot-and-model-selection)
 
-<!-- Added by: mnaveau, at: Mar 18 oct 2022 17:51:33 CEST -->
+<!-- Added by: mnaveau, at: Mar 18 oct 2022 18:12:16 CEST -->
 
 <!--te-->
 
@@ -49,16 +58,12 @@ library(doParallel)
 
     ## Le chargement a nécessité le package : parallel
 
-For this example, the following logistic growth model is considered:
-$$
-y\_{ij} = \\dfrac{\\psi_1}{1+\\exp\\left(-\\dfrac{t\_{ij}-\\varphi_i}{\\psi_2}\\right)} + \\varepsilon\_{ij} , \\text{ with } \\varepsilon\_{ij} \\overset{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0,\\sigma^2), \\\\
-$$
-$$
-\\varphi_i = \\mu + \\mathstrut^t{\\beta} V_i+ \\xi_i , \\text{ with } \\xi_i \\overset{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0,\\Gamma^2),  \\\\
-$$
-where *ψ*<sub>1</sub> and *ψ*<sub>2</sub> are known constants. This is a
-common and realistic model used in many fields of life sciences, such as
-plant growth for example. Let us consider the following parameters:
+For this example, the following logistic growth model is considered: $
+y\_{ij} =  + *{ij} , *{ij} (0,^2), $ \\ $\_i = + ^t{} V_i+ \_i , \_i
+(0,^2), $ \\ where *ψ*<sub>1</sub> and *ψ*<sub>2</sub> are known
+constants. This is a common and realistic model used in many fields of
+life sciences, such as plant growth for example. Let us consider the
+following parameters:
 
 ``` r
 n=200                          #number of individuals
