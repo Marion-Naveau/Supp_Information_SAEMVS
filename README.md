@@ -1,3 +1,12 @@
+-   [Supporting information for the SAEMVS
+    procedure](#supporting-information-for-the-saemvs-procedure)
+-   [Application of SAEMVS on a detailed
+    example](#application-of-saemvs-on-a-detailed-example)
+    -   [Model simulation](#model-simulation)
+    -   [Convergence of the MCMC-SAEM
+        algorithm](#convergence-of-the-mcmc-saem-algorithm)
+    -   [Spike-and-slab regularisation plot and model
+        selection](#spike-and-slab-regularisation-plot-and-model-selection)
 
 # Supporting information for the SAEMVS procedure
 
@@ -10,7 +19,7 @@
    * [Convergence of the MCMC-SAEM algorithm](#convergence-of-the-mcmc-saem-algorithm)
    * [Spike-and-slab regularisation plot and model selection](#spike-and-slab-regularisation-plot-and-model-selection)
 
-<!-- Added by: mnaveau, at: Mar 18 oct 2022 18:23:57 CEST -->
+<!-- Added by: mnaveau, at: Mar 18 oct 2022 20:01:12 CEST -->
 
 <!--te-->
 
@@ -51,8 +60,9 @@ library(doParallel)
 
 For this example, the following logistic growth model is considered:
 $$
-y\_{ij} = \\dfrac{\\psi_1}{1+\\exp\\left(-\\dfrac{t\_{ij}-\\varphi_i}{\\psi_2}\\right)} + \\varepsilon\_{ij} , \\text{ with } \\varepsilon\_{ij} \\overset{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0,\\sigma^2), \\\\
+y\_{ij} = \\dfrac{\\psi_1}{1+\\exp\\left(-\\dfrac{t\_{ij}-\\varphi_i}{\\psi_2}\\right)} + \\varepsilon\_{ij} , with \\varepsilon\_{ij} \\overset{i.i.d.}{\\sim} \\mathcal{N}(0,\\sigma^2), \\\\
 $$
+
 $$
 \\varphi_i = \\mu + \\mathstrut^t{\\beta} V_i+ \\xi_i , \\text{ with } \\xi_i \\overset{\\text{i.i.d.}}{\\sim} \\mathcal{N}(0,\\Gamma^2),  \\\\
 $$
