@@ -21,7 +21,7 @@ G., Rincent R., Sansonnet L., and Delattre M.
 
 The file 'CONTENT_OF_FILE' contains a description of all files in this GitHub directory.
 
-#Application of SAEMVS on a detailed example
+# Application of SAEMVS on a detailed example
 
 ``` r
 rm(list=ls())
