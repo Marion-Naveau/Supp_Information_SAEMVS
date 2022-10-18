@@ -19,6 +19,10 @@ simulations and generating exact copies of all the figures in the paper
 mixed-effects models using the SAEM algorithm”, Naveau M., Kon Kam King
 G., Rincent R., Sansonnet L., and Delattre M.
 
+The file 'CONTENT_OF_FILE' contains a description of all files in this GitHub directory.
+
+#Application of SAEMVS on a detailed example
+
 ``` r
 rm(list=ls())
 
@@ -71,7 +75,7 @@ psi=c(psi1,psi2)
 Thus, only the first three covariates are influential,
 *S*<sub>*β*</sub><sup>\*</sup> = {1, 2, 3}.
 
-# Model simulation
+## Model simulation
 
 For each individual, the *p* covariates are simulated independently
 according to standard normal distributions 𝒩(0,1).
@@ -124,7 +128,7 @@ geom_line(linetype = "dashed") + theme_bw() +labs(color = "INDIVIDUALS")
 
 ![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
-# Convergence of the MCMC-SAEM algorithm
+## Convergence of the MCMC-SAEM algorithm
 
 Algorithm 1 is initialised here with:
 
@@ -309,7 +313,7 @@ covariates are active in the model, which makes the variance estimation
 of the random effect tend towards 0. This illustrates the need to
 threshold the estimators as described in Subsection 3.3.
 
-# Spike-and-slab regularisation plot and model selection
+## Spike-and-slab regularisation plot and model selection
 
 To illustrate how the variable selection works, SAEM-VS is applied on
 this simulated example on the grid of *ν*<sub>0</sub> values *Δ* such
