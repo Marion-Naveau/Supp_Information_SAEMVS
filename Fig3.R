@@ -46,6 +46,9 @@ data_time=data.frame(Method=rep(c("MCMC-SAEM","MCMC"),each=6),p=rep(c(500,700,10
 
 head(data_time)
 data_time$Method<-as.factor(data_time$Method)
-ggplot(data_time,aes(x=p,y=Time,color=Method))+geom_point()+labs(y="Time (in seconds)")+ theme_minimal()+scale_x_continuous(trans = 'log10')+scale_y_continuous(trans = 'log10')+
+Figure3=ggplot(data_time,aes(x=p,y=Time,color=Method))+geom_point()+labs(y="Time (in seconds)")+ theme_minimal()+scale_x_continuous(trans = 'log10')+scale_y_continuous(trans = 'log10')+
   scale_color_manual(values = c("#DDA0DD", "#00a3a6"))+
   geom_smooth(method="lm",se=FALSE)+stat_regline_equation() + theme(axis.text=element_text(size=20), axis.title=element_text(size=20,face="bold"),title=element_text(size=20,face="bold"),legend.title = element_text(size=20,face="bold"),legend.text = element_text(size=20))
+Figure3
+
+ggsave("Figure3.pdf")

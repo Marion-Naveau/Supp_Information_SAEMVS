@@ -701,7 +701,7 @@ nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
 ######################### Script for Figure 2 #########################
 
-########## Figure 2a: rho_Sigma=0.3 and Gamma2=200 ##########
+########## Figure 2A: rho_Sigma=0.3 and Gamma2=200 ##########
 
 rm(list=ls())
 
@@ -795,19 +795,14 @@ data_Gam200$Scenario<-as.factor(data_Gam200$Scenario)
 data_Gam200$p<-as.factor(data_Gam200$p)
 data_Gam200$Result<-factor(data_Gam200$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g1=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="p", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~p,switch = "x")+
-  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=25),axis.text=element_text(size=25), axis.title=element_text(size=25,face="bold"),title=element_text(size=25,face="bold"),legend.position='none')+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g1
 
 
-
-########## Figure 2b: rho_Sigma=0.3 and Gamma2=2000 ##########
-
-rm(list=ls())
-
-library(ggplot2)
-library(ggpattern)
+########## Figure 2B: rho_Sigma=0.3 and Gamma2=2000 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_4_rho3.Rdata","Saves/betahat_simuAC1_5_rho3.Rdata","Saves/betahat_simuAC1_6_rho3.Rdata",
@@ -897,19 +892,14 @@ data_Gam2000$Scenario<-as.factor(data_Gam2000$Scenario)
 data_Gam2000$p<-as.factor(data_Gam2000$p)
 data_Gam2000$Result<-factor(data_Gam2000$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam2000,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g2=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam2000,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="p", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~p,switch = "x")+
-  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=25),axis.text=element_text(size=25), axis.title=element_text(size=25,face="bold"),title=element_text(size=25,face="bold"),legend.title = element_text(size=25,face="bold"),legend.text = element_text(size=25))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g2
 
 
-
-########## Figure 2c: rho_Sigma=0.6 and Gamma2=200 ##########
-
-rm(list=ls())
-
-library(ggplot2)
-library(ggpattern)
+########## Figure 2C: rho_Sigma=0.6 and Gamma2=200 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_1.Rdata","Saves/betahat_simuAC1_2.Rdata","Saves/betahat_simuAC1_3.Rdata",
@@ -998,18 +988,13 @@ data_Gam200$Scenario<-as.factor(data_Gam200$Scenario)
 data_Gam200$p<-as.factor(data_Gam200$p)
 data_Gam200$Result<-factor(data_Gam200$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g3=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="p", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~p,switch = "x")+
-  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=25),axis.text=element_text(size=25), axis.title=element_text(size=25,face="bold"),title=element_text(size=25,face="bold"),legend.position='none')+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g3
 
-
-########## Figure 2d: rho_Sigma=0.6 and Gamma2=2000 ##########
-
-rm(list=ls())
-
-library(ggplot2)
-library(ggpattern)
+########## Figure 2D: rho_Sigma=0.6 and Gamma2=2000 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_4.Rdata","Saves/betahat_simuAC1_5.Rdata","Saves/betahat_simuAC1_6.Rdata",
@@ -1098,8 +1083,15 @@ data_Gam2000$Scenario<-as.factor(data_Gam2000$Scenario)
 data_Gam2000$p<-as.factor(data_Gam2000$p)
 data_Gam2000$Result<-factor(data_Gam2000$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam2000,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g4=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_bar_pattern(data=data_Gam2000,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="p", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~p,switch = "x")+
-  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=25),axis.text=element_text(size=25), axis.title=element_text(size=25,face="bold"),title=element_text(size=25,face="bold"),legend.title = element_text(size=25,face="bold"),legend.text = element_text(size=25))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g4
 
+library(cowplot)
+
+Figure2=plot_grid(g1, g2, g3, g4, labels=c("A","B","C","D"), ncol = 2, nrow = 2, rel_widths=c(1.5,2.1),label_size = 30)
+Figure2
+
+ggsave("Figure2.pdf", height = 16)

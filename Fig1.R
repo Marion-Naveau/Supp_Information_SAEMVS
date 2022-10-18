@@ -173,6 +173,7 @@ nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 rm(list=ls())
 
 library(ggplot2)
+library(cowplot)
 library(ggpattern)
 
 # The saved results are retrieved:
@@ -221,11 +222,11 @@ data_n100$Gamma2<-as.factor(data_n100$Gamma2)
 data_n100$p<-as.factor(data_n100$p)
 data_n100$Result<-factor(data_n100$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=p, y=count, fill=p,pattern=Result))+ geom_bar_pattern(data=data_n100,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g1=ggplot(mapping=aes(x=p, y=count, fill=p,pattern=Result))+ geom_bar_pattern(data=data_n100,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x=expression(Gamma^2), y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~Gamma2,switch = "x")+
-  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
-
+  theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.position='none')+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g1
 
 data_n200 <- data.frame(Gamma2=rep(rep(c(200,1000,2000),each=3),2),p=rep(rep(c(500,2000,5000),3),2),Result=rep(c("Exact","FP but not FN","FN but not FP","FP and FN"),each=9),count=c(nb_exact_model[10:N],nb_cont[10:N],nb_includ[10:N],nb_FP_FN[10:N]))
 data_n200
@@ -233,8 +234,13 @@ data_n200$Gamma2<-as.factor(data_n200$Gamma2)
 data_n200$p<-as.factor(data_n200$p)
 data_n200$Result<-factor(data_n200$Result,levels=c("FP and FN","FN but not FP","FP but not FN","Exact"))
 
-ggplot(mapping=aes(x=p, y=count, fill=p,pattern=Result))+ geom_bar_pattern(data=data_n200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
+g2=ggplot(mapping=aes(x=p, y=count, fill=p,pattern=Result))+ geom_bar_pattern(data=data_n200,width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x=expression(Gamma^2), y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c("Exact"="none", "FP but not FN"="stripe","FN but not FP"="circle","FP and FN"="crosshatch"),breaks = c("Exact","FP but not FN","FN but not FP","FP and FN"))+
   facet_grid(~Gamma2,switch = "x")+
   theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+g2
 
+Figure1=plot_grid(g1, g2, labels=c("A","B"), ncol = 2, nrow = 1,rel_widths=c(1.5,2.1),label_size = 30)
+Figure1
+
+ggsave("Figure1.pdf",width = 20)
