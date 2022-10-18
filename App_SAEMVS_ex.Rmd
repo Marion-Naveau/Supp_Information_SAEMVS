@@ -212,7 +212,6 @@ To have a visual representation of this procedure, a spike-and-slab regularisati
 
 ```{r}
 res=Model_selection(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperparam,s)
-
 save(res,file="Detailed_ex.Rdata")
 
 load("Saves/Detailed_ex.Rdata") 

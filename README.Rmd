@@ -20,6 +20,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This repository contains the real data-set and the code for running the simulations and generating exact copies of all the figures in the paper "Bayesian high-dimensional covariate selection in non-linear mixed-effects models using the SAEM algorithm", Naveau M., Kon Kam King G., Rincent R., Sansonnet L., and Delattre M.
 
+The file 'CONTENT_OF_FILE' contains a description of all files in this GitHub directory.
+
+# Application of SAEMVS on a detailed example
 
 ```{r}
 rm(list=ls())
@@ -58,7 +61,7 @@ psi=c(psi1,psi2)
 Thus, only the first three covariates are influential, \textit{i.e.} $S_{\beta}^*=\{1,2,3\}$. 
 
 
-# Model simulation
+## Model simulation
 
 For each individual, the $p$ covariates are simulated independently according to standard normal distributions $\mathcal{N}(0,1)$. 
 
@@ -108,7 +111,7 @@ geom_line(linetype = "dashed") + theme_bw() +labs(color = "INDIVIDUALS")
 
 ```
 
-# Convergence of the MCMC-SAEM algorithm
+## Convergence of the MCMC-SAEM algorithm
 
 Algorithm 1 is initialised here with:
 ```{r}
@@ -208,7 +211,7 @@ all(abs(res$beta_tilde[5:(p+1),niter+1])<=0.07)
 
 Note that the parameters are all relatively correctly estimated, except for $\Gamma^2$ but this was expected because of a over-fitting situation. Indeed, the underestimation of $\Gamma^2$ can be explained by the fact that since $\nu_0>0$, none of the estimates of the coefficients of $\beta$ is zero and therefore all the covariates are active in the model, which makes the variance estimation of the random effect tend towards $0$. This illustrates the need to threshold the estimators as described in Subsection 3.3. 
 
-# Spike-and-slab regularisation plot and model selection
+## Spike-and-slab regularisation plot and model selection
 
 To illustrate how the variable selection works, SAEM-VS is applied on this simulated example on the grid of $\nu_0$ values $\Delta$ such that $$\log_{10}(\Delta)=\bigg\{-2 + k\times \dfrac{4}{19}, k \in \{0, \dots, 19\}\bigg\}.$$
 
@@ -222,9 +225,6 @@ To have a visual representation of this procedure, a spike-and-slab regularisati
 ```{r}
 res=Model_selection(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperparam,s)
 
-save(res,file="Detailed_ex.Rdata")
-
-load("Saves/Detailed_ex.Rdata") 
 res$graph
 ```
 

@@ -1,0 +1,8 @@
+* [Supporting information for the SAEMVS procedure](#supporting-information-for-the-saemvs-procedure)
+* [Application of SAEMVS on a detailed example](#application-of-saemvs-on-a-detailed-example)
+   * [Model simulation](#model-simulation)
+   * [Convergence of the MCMC-SAEM algorithm](#convergence-of-the-mcmc-saem-algorithm)
+   * [Spike-and-slab regularisation plot and model selection](#spike-and-slab-regularisation-plot-and-model-selection)
+
+<!-- Added by: mnaveau, at: Mar 18 oct 2022 17:51:33 CEST -->
+
