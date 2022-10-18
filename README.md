@@ -329,13 +329,7 @@ with *ν*<sub>0</sub> ∈ *Δ*.
 
 ``` r
 res=Model_selection(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperparam,s)
-```
 
-    ## [1] 3
-    ## [1] 4
-    ## [1] 2
-
-``` r
 save(res,file="Detailed_ex.Rdata")
 
 load("Saves/Detailed_ex.Rdata") 
