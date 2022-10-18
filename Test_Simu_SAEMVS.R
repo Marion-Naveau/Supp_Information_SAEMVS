@@ -10,7 +10,7 @@ library(glmnet)
 library(mvnfast)
 library(doParallel)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 ################################### Model simulation ###################################
 
@@ -127,8 +127,8 @@ Delta=10^(seq(-2,2,length.out = M)) #grid of nu0 values
 
 res <- Model_selection(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V_tilde,param_init,hyperparam,s=s)
 
-save(res,file="Res_test.Rdata")
+#save(res,file="Res_test.Rdata")
 
-load("Res_test.Rdata")
+load("Saves/Res_test.Rdata")
 res$graph
 

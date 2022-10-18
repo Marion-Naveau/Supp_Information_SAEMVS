@@ -11,7 +11,7 @@ library(glmnet)
 library(mvnfast)
 library(doParallel)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 S=10                           #number of simulated data-sets tested for each combination of parameter
 # In the paper S=100, but for reasons of computation time,
@@ -127,10 +127,6 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
 stopCluster(cl)
 fin=Sys.time()
 
-save(resTot,file="Res_test_Fig2_scen1.Rdata")
-
-load("Res_test_Fig2_scen1.Rdata")
-
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
 Gamma2hat_select=rep(NA,S)
@@ -190,7 +186,7 @@ library(glmnet)
 library(mvnfast)
 library(doParallel)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 S=10                           #number of simulated data-sets tested for each combination of parameter
 # In the paper S=100, but for reasons of computation time,
@@ -306,10 +302,6 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
 stopCluster(cl)
 fin=Sys.time()
 
-save(resTot,file="Res_test_Fig2_scen2.Rdata")
-
-load("Res_test_Fig2_scen2.Rdata")
-
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
 Gamma2hat_select=rep(NA,S)
@@ -369,7 +361,7 @@ library(glmnet)
 library(mvnfast)
 library(doParallel)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 S=10                           #number of simulated data-sets tested for each combination of parameter
 # In the paper S=100, but for reasons of computation time,
@@ -485,10 +477,6 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
 stopCluster(cl)
 fin=Sys.time()
 
-save(resTot,file="Res_test_Fig2_scen3.Rdata")
-
-load("Res_test_Fig2_scen3.Rdata")
-
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
 Gamma2hat_select=rep(NA,S)
@@ -548,7 +536,7 @@ library(glmnet)
 library(mvnfast)
 library(doParallel)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 S=10                           #number of simulated data-sets tested for each combination of parameter
 # In the paper S=100, but for reasons of computation time,
@@ -663,10 +651,6 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
 stopCluster(cl)
 fin=Sys.time()
 
-save(resTot,file="Res_test_Fig2_scen4.Rdata")
-
-load("Res_test_Fig2_scen4.Rdata")
-
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
 Gamma2hat_select=rep(NA,S)
@@ -725,12 +709,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("betahat_simuAC1_1_rho3.Rdata","betahat_simuAC1_2_rho3.Rdata","betahat_simuAC1_3_rho3.Rdata",
-            "betahat_simuAC2_1_rho3.Rdata","betahat_simuAC2_2_rho3.Rdata","betahat_simuAC2_3_rho3.Rdata",
-            "betahat_simuAC3_1_rho3.Rdata","betahat_simuAC3_2_rho3.Rdata","betahat_simuAC3_3_rho3.Rdata",
-            "betahat_simuAC4_1_rho3.Rdata","betahat_simuAC4_2_rho3.Rdata","betahat_simuAC4_3_rho3.Rdata")
+file_name=c("Saves/betahat_simuAC1_1_rho3.Rdata","Saves/betahat_simuAC1_2_rho3.Rdata","Saves/betahat_simuAC1_3_rho3.Rdata",
+            "Saves/betahat_simuAC2_1_rho3.Rdata","Saves/betahat_simuAC2_2_rho3.Rdata","Saves/betahat_simuAC2_3_rho3.Rdata",
+            "Saves/betahat_simuAC3_1_rho3.Rdata","Saves/betahat_simuAC3_2_rho3.Rdata","Saves/betahat_simuAC3_3_rho3.Rdata",
+            "Saves/betahat_simuAC4_1_rho3.Rdata","Saves/betahat_simuAC4_2_rho3.Rdata","Saves/betahat_simuAC4_3_rho3.Rdata")
 
-file_name_iid=c("betahat_simuA10.Rdata","betahat_simuA11.Rdata","betahat_simuA12.Rdata")
+file_name_iid=c("Saves/betahat_simuA10.Rdata","Saves/betahat_simuA11.Rdata","Saves/betahat_simuA12.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -826,12 +810,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("betahat_simuAC1_4_rho3.Rdata","betahat_simuAC1_5_rho3.Rdata","betahat_simuAC1_6_rho3.Rdata",
-             "betahat_simuAC2_4_rho3.Rdata","betahat_simuAC2_5_rho3.Rdata","betahat_simuAC2_6_rho3.Rdata",
-             "betahat_simuAC3_4_rho3.Rdata","betahat_simuAC3_5_rho3.Rdata","betahat_simuAC3_6_rho3.Rdata",
-             "betahat_simuAC4_4_rho3.Rdata","betahat_simuAC4_5_rho3.Rdata","betahat_simuAC4_6_rho3.Rdata")
+file_name=c("Saves/betahat_simuAC1_4_rho3.Rdata","Saves/betahat_simuAC1_5_rho3.Rdata","Saves/betahat_simuAC1_6_rho3.Rdata",
+             "Saves/betahat_simuAC2_4_rho3.Rdata","Saves/betahat_simuAC2_5_rho3.Rdata","Saves/betahat_simuAC2_6_rho3.Rdata",
+             "Saves/betahat_simuAC3_4_rho3.Rdata","Saves/betahat_simuAC3_5_rho3.Rdata","Saves/betahat_simuAC3_6_rho3.Rdata",
+             "Saves/betahat_simuAC4_4_rho3.Rdata","Saves/betahat_simuAC4_5_rho3.Rdata","Saves/betahat_simuAC4_6_rho3.Rdata")
 
-file_name_iid=c("betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
+file_name_iid=c("Saves/betahat_simuA16.Rdata","Saves/betahat_simuA17.Rdata","Saves/betahat_simuA18.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -928,12 +912,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("betahat_simuAC1_1.Rdata","betahat_simuAC1_2.Rdata","betahat_simuAC1_3.Rdata",
-            "betahat_simuAC2_1.Rdata","betahat_simuAC2_2.Rdata","betahat_simuAC2_3.Rdata",
-            "betahat_simuAC3_1.Rdata","betahat_simuAC3_2.Rdata","betahat_simuAC3_3.Rdata",
-            "betahat_simuAC4_1.Rdata","betahat_simuAC4_2.Rdata","betahat_simuAC4_3.Rdata")
+file_name=c("Saves/betahat_simuAC1_1.Rdata","Saves/betahat_simuAC1_2.Rdata","Saves/betahat_simuAC1_3.Rdata",
+            "Saves/betahat_simuAC2_1.Rdata","Saves/betahat_simuAC2_2.Rdata","Saves/betahat_simuAC2_3.Rdata",
+            "Saves/betahat_simuAC3_1.Rdata","Saves/betahat_simuAC3_2.Rdata","Saves/betahat_simuAC3_3.Rdata",
+            "Saves/betahat_simuAC4_1.Rdata","Saves/betahat_simuAC4_2.Rdata","Saves/betahat_simuAC4_3.Rdata")
 
-file_name_iid=c("betahat_simuA10.Rdata","betahat_simuA11.Rdata","betahat_simuA12.Rdata")
+file_name_iid=c("Saves/betahat_simuA10.Rdata","Saves/betahat_simuA11.Rdata","Saves/betahat_simuA12.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,
@@ -1028,12 +1012,12 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("betahat_simuAC1_4.Rdata","betahat_simuAC1_5.Rdata","betahat_simuAC1_6.Rdata",
-             "betahat_simuAC2_4.Rdata","betahat_simuAC2_5.Rdata","betahat_simuAC2_6.Rdata",
-             "betahat_simuAC3_4.Rdata","betahat_simuAC3_5.Rdata","betahat_simuAC3_6.Rdata",
-             "betahat_simuAC4_4.Rdata","betahat_simuAC4_5.Rdata","betahat_simuAC4_6.Rdata")
+file_name=c("Saves/betahat_simuAC1_4.Rdata","Saves/betahat_simuAC1_5.Rdata","Saves/betahat_simuAC1_6.Rdata",
+             "Saves/betahat_simuAC2_4.Rdata","Saves/betahat_simuAC2_5.Rdata","Saves/betahat_simuAC2_6.Rdata",
+             "Saves/betahat_simuAC3_4.Rdata","Saves/betahat_simuAC3_5.Rdata","Saves/betahat_simuAC3_6.Rdata",
+             "Saves/betahat_simuAC4_4.Rdata","Saves/betahat_simuAC4_5.Rdata","Saves/betahat_simuAC4_6.Rdata")
 
-file_name_iid=c("betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
+file_name_iid=c("Saves/betahat_simuA16.Rdata","Saves/betahat_simuA17.Rdata","Saves/betahat_simuA18.Rdata")
 
 ## For each combination of parameter, on the S datasets, we look at the number of data-sets on which SAEMVS selects the correct model: nb_exact_model,
 ## a model that contains the correct model but not equal (there are false positives (FP) but not false negatives (FN)): nb_cont,

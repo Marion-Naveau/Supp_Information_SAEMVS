@@ -10,7 +10,7 @@ library(mvnfast)
 library(doParallel)
 library(microbenchmark)
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 ## As explained in subsection 5.4, to stabilise the MCMC procedure, the prior on sigma^2
 ## is modified to an uniform distribution on [0,200] for both methods MCMC and MCMC-SAEM.
@@ -284,7 +284,7 @@ stopCluster(cl)
 
 save(Total_Time,file="Res_Test_comp_time_MCMCSAEM.Rdata")
 
-load("Res_Test_comp_time_MCMCSAEM.Rdata")
+load("Saves/Res_Test_comp_time_MCMCSAEM.Rdata")
 time=rep(0,S)
 for (s in 1:S){
   time[s]=summary(Total_Time[[s]])$min

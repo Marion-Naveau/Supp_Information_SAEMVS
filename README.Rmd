@@ -1,16 +1,25 @@
 ---
-title: "Web-based supporting materials for 'Bayesian high-dimensional covariate selection in non-linear mixed-effects models using the SAEM algorithm' by Naveau M., Kon Kam King G., Rincent R., Sansonnet L., and Delattre M.."
+title: "Application of SAEMVS on a detailed example"
 output:
-  html_document: default
-  pdf_document: default
-date: "2022-10-18"
+  md_document:
+    variant: markdown_github
+    toc: true
 ---
-
-# Application of SAEMVS on a detailed example
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Supporting information for the SAEMVS procedure
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+<!--ts-->
+<!--te-->
+
+This repository contains the real data-set and the code for running the simulations and generating exact copies of all the figures in the paper "Bayesian high-dimensional covariate selection in non-linear mixed-effects models using the SAEM algorithm", Naveau M., Kon Kam King G., Rincent R., Sansonnet L., and Delattre M.
+
 
 ```{r}
 rm(list=ls())

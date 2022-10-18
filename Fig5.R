@@ -11,7 +11,7 @@ library(doParallel)
 
 ####################### Observed data #######################
 
-data <- read.csv2("13INRmon_NUE_LN.csv")
+data <- read.csv2("Data/13INRmon_NUE_LN.csv")
 head(data)
 dates <- which(str_detect(colnames(data),"date") == T)
 
@@ -54,7 +54,7 @@ save(data_obs,file="data_obs.Rdata")
 
 ###################### Data-set with the SNPs ######################
 
-SNPs <- read.csv2("genotypeFilterPlink_100_5_0.8.csv",sep="",row.names = 1)
+SNPs <- read.csv2("Data/genotypeFilterPlink_100_5_0.8.csv",sep="",row.names = 1)
 SNPs <- as.matrix(SNPs)
 SNPs <- t(SNPs)
 SNPs <- as.data.frame(SNPs)
@@ -62,7 +62,7 @@ SNPs <- SNPs%>%mutate_at(colnames(SNPs), as.character)
 SNPs <- SNPs%>%mutate_at(colnames(SNPs), as.numeric)
 SNPs <- as.matrix(SNPs)
 
-data_chromosome <- read.csv2("carte_Axiom-TABW420k_WGAv1.csv",header=TRUE, sep = " ") #dataframe containing the position on the genome of each SNP
+data_chromosome <- read.csv2("Data/carte_Axiom-TABW420k_WGAv1.csv",header=TRUE, sep = " ") #dataframe containing the position on the genome of each SNP
 #data_chromosome$V1: chromosome, data_chromosome$V2: position on the chromosome, data_chromosome$name: name of the SNP
 
 # Missing values were imputed as the marker observed frequency by the biologists,
@@ -94,7 +94,7 @@ data_chromosome=data_chromosome[which(data_chromosome$V1!="chrUn"),]
 dim(data_chromosome)[1] #Finally, we have 26189 SNPs in our data-set
 
 
-heading_QTL <- read.csv("marker_HD_INRmon13LN.csv",sep="")[,1]  #list of heading QTLs names
+heading_QTL <- read.csv("Data/marker_HD_INRmon13LN.csv",sep="")[,1]  #list of heading QTLs names
 heading_QTL <- as.character(heading_QTL)
 
 
@@ -210,7 +210,7 @@ nb_QTL=sum(heading_QTL%in%colnames(V_chr6A))
 ind_QTL=which(colnames(V_chr6A)%in%heading_QTL) #indices of the columns of V_chr6A that correspond to heading QTLs
 dim(V_chr6A)
 
-sspop <- readRDS("resPCOAdf.Rds") #5 new covariates to control for subpopulation structure, obtained by PCA
+sspop <- readRDS("Data/resPCOAdf.Rds") #5 new covariates to control for subpopulation structure, obtained by PCA
 V_tilde_chr6A= as.matrix(cbind(Intercept=rep(1,n),sspop,V_chr6A))
 
 V_tilde_chr6A[,-1] <- scale(V_tilde_chr6A[,-1],center=T,scale=T)
@@ -221,10 +221,10 @@ save(data_chr6A,file="data_real_chr6A.Rdata")
 
 ## Then we applied SAEMVS:
 
-load("data_real_chr6A.Rdata")
-load("data_obs.Rdata")
-sspop <- readRDS("resPCOAdf.Rds")
-data_chromosome <- read.csv2("carte_Axiom-TABW420k_WGAv1.csv",header=TRUE, sep = " ")
+load("Saves/data_real_chr6A.Rdata")
+load("Saves/data_obs.Rdata")
+sspop <- readRDS("Data/resPCOAdf.Rds")
+data_chromosome <- read.csv2("Data/carte_Axiom-TABW420k_WGAv1.csv",header=TRUE, sep = " ")
 
 varieties=unique(data_obs$GENOTYPE)
 obs_date=unique(data_obs$Day)
@@ -246,7 +246,7 @@ markers=data_chr6A$markers
 p=length(markers)
 K=dim(sspop)[2]
 
-source('../R/Functions_SAEMVS_real_data.R')
+source('R/Functions_SAEMVS_real_data.R')
 
 # Initial values for the parameters to be estimated
 
@@ -323,7 +323,7 @@ Delta <- 10^(seq(-4.5,-3,length.out = M))
 
 res <- Model_selection(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V_tilde,param_init,hyperparam)
 
-save(res,file="Res_real_chr6A.Rdata")
+#save(res,file="Res_real_chr6A.Rdata")
 
-load("Res_real_chr6A.Rdata")
+load("Saves/Res_real_chr6A.Rdata")
 res$graph

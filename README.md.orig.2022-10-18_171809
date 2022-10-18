@@ -11,13 +11,6 @@
 <!-- badges: start -->
 <!-- badges: end -->
 <!--ts-->
-* [Supporting information for the SAEMVS procedure](#supporting-information-for-the-saemvs-procedure)
-* [Model simulation](#model-simulation)
-* [Convergence of the MCMC-SAEM algorithm](#convergence-of-the-mcmc-saem-algorithm)
-* [Spike-and-slab regularisation plot and model selection](#spike-and-slab-regularisation-plot-and-model-selection)
-
-<!-- Added by: mnaveau, at: Mar 18 oct 2022 17:18:09 CEST -->
-
 <!--te-->
 
 This repository contains the real data-set and the code for running the

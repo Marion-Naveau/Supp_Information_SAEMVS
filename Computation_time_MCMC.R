@@ -10,7 +10,7 @@ library(mvnfast)
 library(doParallel)
 library(microbenchmark)
 
-source("../R/nimble_fit_functions.R")
+source("R/nimble_fit_functions.R")
 
 ## As explained in subsection 5.4, to stabilise the MCMC procedure, the prior on sigma^2
 ## is modified to an uniform distribution on [0,200] for both methods MCMC and MCMC-SAEM.
@@ -92,7 +92,7 @@ stopCluster(cl)
 
 save(Total_Time,file="Res_Test_comp_time_MCMC.Rdata")
 
-load("Res_Test_comp_time_MCMC.Rdata")
+load("Saves/Res_Test_comp_time_MCMC.Rdata")
 
 time=rep(0,50)
 for (s in 1:50){

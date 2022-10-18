@@ -8,7 +8,7 @@ library(dplyr)
 
 ####################### Observed data #######################
 
-data <- read.csv2("13INRmon_NUE_LN.csv")
+data <- read.csv2("Data/13INRmon_NUE_LN.csv")
 head(data)
 dates <- which(str_detect(colnames(data),"date") == T)
 
@@ -47,7 +47,7 @@ minD <- min(julian(newdata1$Date))
 newdata1$Day <- julian(newdata1$Date) - minD
 
 data_obs=newdata1
-save(data_obs,file="data_obs.Rdata")
+#save(data_obs,file="data_obs.Rdata")
 
 par(mfrow=c(3,3))
 for (i in unique(data_obs$GENOTYPE)){

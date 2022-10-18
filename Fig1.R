@@ -10,7 +10,7 @@ library(ggpattern)
 
 ######################### Example to obtain one bar from Figure 1 #########################
 
-source('../R/Functions_SAEMVS_simu.R')
+source('R/Functions_SAEMVS_simu.R')
 
 S=10                           #number of simulated data-sets tested for each combination of parameter
 # In the paper S=100, but for reasons of computation time,
@@ -118,7 +118,7 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
 stopCluster(cl)
 save(resTot,file="Res_test_Fig1.Rdata")
 
-load("Res_test_Fig1.Rdata")
+load("Saves/Res_test_Fig1.Rdata")
 
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
@@ -176,10 +176,11 @@ library(ggplot2)
 library(ggpattern)
 
 # The saved results are retrieved:
-file_name=c("betahat_simuA1.Rdata","betahat_simuA2.Rdata","betahat_simuA3.Rdata","betahat_simuA4.Rdata","betahat_simuA5.Rdata",
-            "betahat_simuA6.Rdata","betahat_simuA7.Rdata","betahat_simuA8.Rdata","betahat_simuA9.Rdata","betahat_simuA10.Rdata",
-            "betahat_simuA11.Rdata","betahat_simuA12.Rdata","betahat_simuA13.Rdata","betahat_simuA14.Rdata","betahat_simuA15.Rdata",
-            "betahat_simuA16.Rdata","betahat_simuA17.Rdata","betahat_simuA18.Rdata")
+file_name=c("Saves/betahat_simuA1.Rdata","Saves/betahat_simuA2.Rdata","Saves/betahat_simuA3.Rdata","Saves/betahat_simuA4.Rdata",
+            "Saves/betahat_simuA5.Rdata","Saves/betahat_simuA6.Rdata","Saves/betahat_simuA7.Rdata","Saves/betahat_simuA8.Rdata",
+            "Saves/betahat_simuA9.Rdata","Saves/betahat_simuA10.Rdata","Saves/betahat_simuA11.Rdata","Saves/betahat_simuA12.Rdata",
+            "Saves/betahat_simuA13.Rdata","Saves/betahat_simuA14.Rdata","Saves/betahat_simuA15.Rdata","Saves/betahat_simuA16.Rdata",
+            "Saves/betahat_simuA17.Rdata","Saves/betahat_simuA18.Rdata")
 
 N=length(file_name)
 nb_exact_model=rep(0,N)

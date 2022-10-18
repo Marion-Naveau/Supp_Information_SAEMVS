@@ -8,8 +8,8 @@ library(ggpubr)
 
 ## We recover the calculation times from MCMC-SAEM
 
-file_name_MCMCSAEM=c("Time_MCMCSAEM_p500.Rdata","Time_MCMCSAEM_p700.Rdata","Time_MCMCSAEM_p1000.Rdata",
-            "Time_MCMCSAEM_p1500.Rdata","Time_MCMCSAEM_p2000.Rdata","Time_MCMCSAEM_p2500.Rdata")
+file_name_MCMCSAEM=c("Saves/Time_MCMCSAEM_p500.Rdata","Saves/Time_MCMCSAEM_p700.Rdata","Saves/Time_MCMCSAEM_p1000.Rdata",
+            "Saves/Time_MCMCSAEM_p1500.Rdata","Saves/Time_MCMCSAEM_p2000.Rdata","Saves/Time_MCMCSAEM_p2500.Rdata")
 
 S=50
 time_MCMCSAEM=rep(0,6)
@@ -25,8 +25,8 @@ for (k in c(1:length(file_name_MCMCSAEM))){
 
 ## We recover the calculation times from MCMC
 
-file_name_MCMC=c("Time_MCMC_p500.Rdata","Time_MCMC_p700.Rdata","Time_MCMC_p1000.Rdata",
-                  "Time_MCMC_p1500.Rdata","Time_MCMC_p2000.Rdata","Time_MCMC_p2500.Rdata")
+file_name_MCMC=c("Saves/Time_MCMC_p500.Rdata","Saves/Time_MCMC_p700.Rdata","Saves/Time_MCMC_p1000.Rdata",
+                  "Saves/Time_MCMC_p1500.Rdata","Saves/Time_MCMC_p2000.Rdata","Saves/Time_MCMC_p2500.Rdata")
 
 S=50
 time_MCMC=rep(0,6)
