@@ -353,7 +353,7 @@ As expected, the larger *ν*<sub>0</sub> is, the smaller the support of
 the associated $\widehat{\beta}_{\nu_0}^{MAP}$ is.
 Indeed, on the one hand, the selection threshold increases with
 *ν*<sub>0</sub>, and on the other hand, the larger *ν*<sub>0</sub> is,
-the more the $\widehat{\beta}^{MAP}_{\nu_0}$ coordinates are
+the more the $\widehat{\beta_{\nu_0}}^{MAP}$ coordinates are
 truncated in the spike distribution. This illustrates the interest of
 going through a grid rather than focusing on a single *ν*<sub>0</sub>
 value.
