@@ -213,7 +213,7 @@ This file contains:
     that *β̃*<sub>ℓ</sub> ≠ 0. This function returns for each parameter
     its maximum likelihood estimator.
 -   Model_selection: function that corresponds to the proposed variable
-    selection procedure SAEM-VS, Algorithm 2 in appendix A.2. It takes
+    selection procedure SAEMVS, Algorithm 2 in appendix A.2. It takes
     as input (Delta, niter, nburnin, niterMH_phi, Y, t, id, V_tilde,
     param_init, hyperparam, s), where Delta is the grid of nu0 values.
     This function returns a list that contains a graph with the
@@ -314,7 +314,7 @@ threshold the estimators as described in Subsection 3.3.
 
 ## Spike-and-slab regularisation plot and model selection
 
-To illustrate how the variable selection works, SAEM-VS is applied on
+To illustrate how the variable selection works, SAEMVS is applied on
 this simulated example on the grid of *ν*<sub>0</sub> values *Δ* such
 that
 $$\\log\_{10}(\\Delta)=\\bigg\\{-2 + k\\times \\dfrac{4}{19}, k \\in \\{0, \\dots, 19\\}\\bigg\\}.$$
@@ -345,16 +345,16 @@ relevant covariates, while the black lines are associated with the null
 fixed effects of the covariates. Moreover, the red lines correspond to
 the selection threshold of the covariates. Thus, for each
 *ν*<sub>0</sub> ∈ *Δ*, the selected covariates
-*Ŝ*<sub>*ν*<sub>0</sub></sub> are those associated with a
-(*β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup>)<sub>ℓ</sub> located
+$\widehat{S}_{\nu_0}$ are those associated with a
+$(\widehat{\beta}^{MAP}_{nu_0})_{\ell}$ located
 outside the two red curves in the regularisation plot.
 
 As expected, the larger *ν*<sub>0</sub> is, the smaller the support of
-the associated *β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup> is.
+the associated $\widehat{\beta}^{MAP}_{nu_0}$ is.
 Indeed, on the one hand, the selection threshold increases with
 *ν*<sub>0</sub>, and on the other hand, the larger *ν*<sub>0</sub> is,
 the more
-(*β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup>)<sub>ℓ</sub>’s are
+$(\widehat{\beta}^{MAP}_{nu_0})_{\ell}$’s are
 truncated in the spike distribution. This illustrates the interest of
 going through a grid rather than focusing on a single *ν*<sub>0</sub>
 value.
@@ -363,8 +363,8 @@ Figure (B) represents the value of the eBIC criterion for all
 *ν*<sub>0</sub> in *Δ*. As desired, it is minimal for the values of
 *ν*<sub>0</sub> for which exactly the right model is selected. The
 procedure returns the second value of *ν*<sub>0</sub> ∈ *Δ*,
-*ν̂*<sub>0</sub> ≈ 0.016, and *Ŝ*<sub>*ν̂*<sub>0</sub></sub> = {1, 2, 3}.
-So, in this simulated example, SAEM-VS returns exactly the right model,
+$\widehat{\nu_0}$ ≈ 0.016, and $\widehat{S}_{\widehat{\nu_0}}$ = {1, 2, 3}.
+So, in this simulated example, SAEMVS returns exactly the right model,
 that is the one with only the first three covariates:
 
 ``` r
