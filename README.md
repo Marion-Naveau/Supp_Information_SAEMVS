@@ -346,7 +346,7 @@ fixed effects of the covariates. Moreover, the red lines correspond to
 the selection threshold of the covariates. Thus, for each
 *ν*<sub>0</sub> ∈ *Δ*, the selected covariates
 $\widehat{S}_{\nu_0}$ are those associated with a
-$(\widehat{\beta}^{MAP}_{\nu_0})_{\ell}$ located
+$(\widehat{\beta}^{MAP})_{\ell}$ located
 outside the two red curves in the regularisation plot.
 
 As expected, the larger *ν*<sub>0</sub> is, the smaller the support of
