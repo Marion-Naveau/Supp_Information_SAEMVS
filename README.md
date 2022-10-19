@@ -68,7 +68,7 @@ beta <- c(100, 50, 20, rep(0, p - 3)) # covariate fixed effects vector
 beta_tilde <- c(mu, beta) # useful reformulation
 psi1 <- 200 # parameter of the function g
 psi2 <- 300 # parameter of the function g
-psi <- c(psi1, psi2)
+psi <- c(psi1, psi2) # fixed effects
 ```
 
 Thus, only the first three covariates are influential,
