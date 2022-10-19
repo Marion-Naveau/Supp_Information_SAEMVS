@@ -262,7 +262,7 @@ abline(h=3/p,col="red",lty=2)
 ![](README_files/figure-markdown_github/unnamed-chunk-11-4.png)
 
 In this example, after 500 iterations, the algorithm returns
-$\Tilde{\mu}$ = 1199.6,
+$\widehat{\mu}$ = 1199.6,
 *β̂*<sub>1</sub><sup>*M**A**P*</sup> = 95.0,
 *β̂*<sub>2</sub><sup>*M**A**P*</sup> = 49.3,
 *β̂*<sub>3</sub><sup>*M**A**P*</sup> = 18.1,
