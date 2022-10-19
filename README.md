@@ -195,13 +195,13 @@ This file contains:
     nburnin, niterMH_phi, Y, t, id, V_tilde, param_init, hyperparam, s)
     where all these parameters are defined above and s is the seed. It
     returns beta_tilde a (*p*+1)×(niter+1) matrix where columns are the
-    MAP estimation vector of *β̃* over the iterations, and Gamma2,
+    MAP estimation vector of $\tilde{\beta}$ over the iterations, and Gamma2,
     sigma2, alpha are vectors of size niter+1 containing the MAP
     estimates of *Γ*<sup>2</sup>, *σ*<sup>2</sup> and *α*, respectively,
     during the iterations.
 -   p_star: function used in SAEM_MAP and which corresponds to
     equation (9) in the paper that is the the conditional expectation of
-    *δ* knowing (*φ*,*y*,*Θ*<sup>(*k*)</sup>). It takes as input
+    *δ* knowing ($\varphi$,*y*,*Θ*<sup>(*k*)</sup>). It takes as input
     (*β*<sup>(*k*)</sup>,*α*<sup>(*k*)</sup>,*ν*<sub>0</sub>,*ν*<sub>1</sub>,*p*)
     and returns this conditional expectation.
 -   g: function that corresponds to the logistic growth model.
@@ -210,7 +210,7 @@ This file contains:
     criterion. It takes as input the same parameters as SAEM_MAP except
     hyperparam, that corresponds here to a list that contains *ψ* and
     *τ*, and we also put in input *I*, which is a set of indices ℓ such
-    that *β̃*<sub>ℓ</sub> ≠ 0. This function returns for each parameter
+    that $\tilde{\beta}_{\ell}$ ≠ 0. This function returns for each parameter
     its maximum likelihood estimator.
 -   Model_selection: function that corresponds to the proposed variable
     selection procedure SAEMVS, Algorithm 2 in appendix A.2. It takes
