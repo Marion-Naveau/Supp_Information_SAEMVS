@@ -363,7 +363,7 @@ Figure (B) represents the value of the eBIC criterion for all
 *ν*<sub>0</sub> in *Δ*. As desired, it is minimal for the values of
 *ν*<sub>0</sub> for which exactly the right model is selected. The
 procedure returns the second value of *ν*<sub>0</sub> ∈ *Δ*,
-$\widehat{\nu}_0$ ≈ 0.016, and $\widehat{S}_{\widehat{\nu}_0}$ = {1, 2, 3}.
+$\hat\nu_0$ ≈ 0.016, and $\widehat{S}_{\hat\nu_0}$ = {1, 2, 3}.
 So, in this simulated example, SAEMVS returns exactly the right model,
 that is the one with only the first three covariates:
 
