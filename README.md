@@ -201,7 +201,7 @@ This file contains:
     during the iterations.
 -   p_star: function used in SAEM_MAP and which corresponds to
     equation (9) in the paper that is the the conditional expectation of
-    *δ* knowing $(\varphi$,y,\Theta^{(k)})$. It takes as input
+    *δ* knowing $(\varphi,y,\Theta^{(k)})$. It takes as input
     (*β*<sup>(*k*)</sup>,*α*<sup>(*k*)</sup>,*ν*<sub>0</sub>,*ν*<sub>1</sub>,*p*)
     and returns this conditional expectation.
 -   g: function that corresponds to the logistic growth model.
