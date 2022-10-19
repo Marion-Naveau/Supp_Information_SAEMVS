@@ -91,7 +91,7 @@ V_tilde[,c(2:(p+1))]=scale(V_tilde[,c(2:(p+1))])
 V=V_tilde[,-1]
 ```
 
-Then, the latent variables *φ*<sub>*i*</sub> are simulated like:
+Then, the latent variables $\varphi_i$ are simulated like:
 
 ``` r
 phi=rep(0,n)
