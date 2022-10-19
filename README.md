@@ -268,7 +268,7 @@ $\widehat{\beta_2}^{MAP} = 49.3$,
 $\widehat{\beta_3}^{MAP} = 18.1$,
 $\widehat{\sigma^2}^{MAP} = 32.68$,
 $\widehat{\Gamma^2}^{MAP} = 2.11$ and
-$\widehat{\alpha}^{MAP} = 0.003$.:
+$\widehat{\alpha}^{MAP} = 0.003$:
 
 ``` r
 res$beta_tilde[1:4,niter+1]
