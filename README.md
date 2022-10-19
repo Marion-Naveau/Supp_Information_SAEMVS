@@ -346,15 +346,15 @@ fixed effects of the covariates. Moreover, the red lines correspond to
 the selection threshold of the covariates. Thus, for each
 *ν*<sub>0</sub> ∈ *Δ*, the selected covariates
 $\widehat{S}_{\nu_0}$ are those associated with a
-$(\widehat{\beta}^{MAP}_{nu_0})_{\ell}$ located
+$(\widehat{\beta}^{MAP}_{\nu_0})_{\ell}$ located
 outside the two red curves in the regularisation plot.
 
 As expected, the larger *ν*<sub>0</sub> is, the smaller the support of
-the associated $\widehat{\beta}^{MAP}_{nu_0}$ is.
+the associated $\widehat{\beta}^{MAP}_{\nu_0}$ is.
 Indeed, on the one hand, the selection threshold increases with
 *ν*<sub>0</sub>, and on the other hand, the larger *ν*<sub>0</sub> is,
 the more
-$(\widehat{\beta}^{MAP}_{nu_0})_{\ell}$’s are
+$(\widehat{\beta}^{MAP}_{\nu_0})_{\ell}$’s are
 truncated in the spike distribution. This illustrates the interest of
 going through a grid rather than focusing on a single *ν*<sub>0</sub>
 value.
@@ -363,7 +363,7 @@ Figure (B) represents the value of the eBIC criterion for all
 *ν*<sub>0</sub> in *Δ*. As desired, it is minimal for the values of
 *ν*<sub>0</sub> for which exactly the right model is selected. The
 procedure returns the second value of *ν*<sub>0</sub> ∈ *Δ*,
-$\widehat{\nu_0}$ ≈ 0.016, and $\widehat{S}_{\widehat{\nu_0}}$ = {1, 2, 3}.
+$\widehat{\nu}_0$ ≈ 0.016, and $\widehat{S}_{\widehat{\nu}_0}$ = {1, 2, 3}.
 So, in this simulated example, SAEMVS returns exactly the right model,
 that is the one with only the first three covariates:
 
