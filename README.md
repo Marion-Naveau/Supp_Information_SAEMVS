@@ -346,15 +346,15 @@ fixed effects of the covariates. Moreover, the red lines correspond to
 the selection threshold of the covariates. Thus, for each
 *ν*<sub>0</sub> ∈ *Δ*, the selected covariates $\hat S_{\nu_0}$ 
 are those associated with a
-$(\hat \beta^{MAP}_{\nu_0})_{\ell}$ located
+(*β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup>)<sub>ℓ</sub> located
 outside the two red curves in the regularisation plot.
 
 As expected, the larger *ν*<sub>0</sub> is, the smaller the support of
-the associated $\widehat{\beta}^{MAP}_{\nu_0}$ is.
+the associated *β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup> is.
 Indeed, on the one hand, the selection threshold increases with
 *ν*<sub>0</sub>, and on the other hand, the larger *ν*<sub>0</sub> is,
 the more
-$(\widehat{\beta}^{MAP}_{\nu_0})_{\ell}$’s are
+(*β̂*<sub>*ν*<sub>0</sub></sub><sup>*M**A**P*</sup>)<sub>ℓ</sub>’s are
 truncated in the spike distribution. This illustrates the interest of
 going through a grid rather than focusing on a single *ν*<sub>0</sub>
 value.
