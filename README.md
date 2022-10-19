@@ -201,7 +201,7 @@ This file contains:
     during the iterations.
 -   p_star: function used in SAEM_MAP and which corresponds to
     equation (9) in the paper that is the the conditional expectation of
-    *δ* knowing ($\varphi$,*y*,*Θ*<sup>(*k*)</sup>). It takes as input
+    *δ* knowing $(\varphi$,y,\Theta^{(k)})$. It takes as input
     (*β*<sup>(*k*)</sup>,*α*<sup>(*k*)</sup>,*ν*<sub>0</sub>,*ν*<sub>1</sub>,*p*)
     and returns this conditional expectation.
 -   g: function that corresponds to the logistic growth model.
@@ -215,7 +215,7 @@ This file contains:
 -   Model_selection: function that corresponds to the proposed variable
     selection procedure SAEMVS, Algorithm 2 in appendix A.2. It takes
     as input (Delta, niter, nburnin, niterMH_phi, Y, t, id, V_tilde,
-    param_init, hyperparam, s), where Delta is the grid of nu0 values.
+    param_init, hyperparam, s), where Delta is the grid of *ν*<sub>0</sub> values.
     This function returns a list that contains a graph with the
     regularisation plot and the value of the eBIC criterion, the
     selected model (the set of selected covariates), the values of the
@@ -223,7 +223,7 @@ This file contains:
     $\\hat{\\sigma^2}$ for the selected model, the selected
     *ν*<sub>0</sub>, the values of the MAP estimates of each parameters
     for each value of *ν*<sub>0</sub> in the grid, and the a posteriori
-    inclusion probability of each covariates knowing *Θ̂* for each value
+    inclusion probability of each covariates knowing $\hat\Theta$ for each value
     of *ν*<sub>0</sub>.
 
 The following figure represents the convergence graphs of one run of the
