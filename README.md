@@ -49,7 +49,7 @@ library(doParallel)
     ## Le chargement a nécessité le package : parallel
 
 For this example, the following logistic growth model is considered:
-$y_{ij}= \frac{\psi_1}{1+\exp\left(-\frac{t_{ij}-\varphi_i}{\psi_2}\right)}+ \varepsilon_{ij} ,$
+$y_{ij}= \frac{\psi_1}{1+\exp\left(-\frac{t_{ij}-\varphi_i}{\psi_2}\right)}+ \varepsilon_{ij} ,\text{ with } \varepsilon_{ij} \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\sigma^2)$
 
 $$= \frac{\psi_1}{1+\exp\left(-\frac{t_{ij}-\varphi_i}{\psi_2}\right)}+ \varepsilon_{ij} , \text{ with } \varepsilon_{ij} \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\sigma^2), \\$$
 
