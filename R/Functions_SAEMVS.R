@@ -52,7 +52,7 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
   beta_tilde = matrix(NA,nrow=p+1,ncol=niter+1)
   alpha = rep(NA,niter+1)
   Gamma2 = rep(NA,niter+1)
-  sigma2 = rep(NA,niter+1) #each line corresponds to the updates of (omega_1)^2 and (omega_2)^2 respectively
+  sigma2 = rep(NA,niter+1) 
 
   beta_tilde[,1] = param_init$beta_tilde
   alpha[1] <- param_init$alpha
