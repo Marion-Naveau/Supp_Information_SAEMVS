@@ -1,4 +1,4 @@
-## >>>>>>>>>>>> Script for Figure 5 <<<<<<<<<<<
+## >>>>>>>>>>>> Script for Figure 6 <<<<<<<<<<<
 
 rm(list=ls())
 
@@ -328,4 +328,4 @@ res <- Model_selection(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V_tild
 load("Saves/Res_real_chr6A.Rdata")
 res$graph
 
-ggsave("Figure5.pdf")
+ggsave("Figure6.pdf")
