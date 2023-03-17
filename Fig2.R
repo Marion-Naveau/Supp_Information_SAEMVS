@@ -1,6 +1,6 @@
-## >>>>>>>>>>>> Script for Figure 2 with examples <<<<<<<<<<<
+## >>>>>>>>>>>> Script for Figure 3 with examples <<<<<<<<<<<
 
-######################### Example to obtain one bar with scenario 1 from Figure 2 #########################
+######################### Example to obtain one bar with scenario 1 from Figure 3 #########################
 
 rm(list=ls())
 
@@ -175,7 +175,7 @@ nb_includ
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
 
-######################### Example to obtain one bar with scenario 2 from Figure 2 #########################
+######################### Example to obtain one bar with scenario 2 from Figure 3 #########################
 
 rm(list=ls())
 
@@ -350,7 +350,7 @@ nb_includ
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
 
-######################### Example to obtain one bar with scenario 3 from Figure 2 #########################
+######################### Example to obtain one bar with scenario 3 from Figure 3 #########################
 
 rm(list=ls())
 
@@ -525,7 +525,7 @@ nb_includ
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
 
-######################### Example to obtain one bar with scenario 4 from Figure 2 #########################
+######################### Example to obtain one bar with scenario 4 from Figure 3 #########################
 
 rm(list=ls())
 
@@ -699,9 +699,9 @@ nb_includ
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
 
-######################### Script for Figure 2 #########################
+######################### Script for Figure 3 #########################
 
-########## Figure 2A: rho_Sigma=0.3 and Gamma2=200 ##########
+########## Figure 3A: rho_Sigma=0.3 and Gamma2=200 ##########
 
 rm(list=ls())
 
@@ -802,7 +802,7 @@ g1=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_
 g1
 
 
-########## Figure 2B: rho_Sigma=0.3 and Gamma2=2000 ##########
+########## Figure 3B: rho_Sigma=0.3 and Gamma2=2000 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_4_rho3.Rdata","Saves/betahat_simuAC1_5_rho3.Rdata","Saves/betahat_simuAC1_6_rho3.Rdata",
@@ -899,7 +899,7 @@ g2=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_
 g2
 
 
-########## Figure 2C: rho_Sigma=0.6 and Gamma2=200 ##########
+########## Figure 3C: rho_Sigma=0.6 and Gamma2=200 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_1.Rdata","Saves/betahat_simuAC1_2.Rdata","Saves/betahat_simuAC1_3.Rdata",
@@ -994,7 +994,7 @@ g3=ggplot(mapping=aes(x=Scenario, y=count, fill=Scenario,pattern=Result))+ geom_
   theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=25),axis.text=element_text(size=25), axis.title=element_text(size=25,face="bold"),title=element_text(size=25,face="bold"),legend.position='none')+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
 g3
 
-########## Figure 2D: rho_Sigma=0.6 and Gamma2=2000 ##########
+########## Figure 3D: rho_Sigma=0.6 and Gamma2=2000 ##########
 
 # The saved results are retrieved:
 file_name=c("Saves/betahat_simuAC1_4.Rdata","Saves/betahat_simuAC1_5.Rdata","Saves/betahat_simuAC1_6.Rdata",
@@ -1091,7 +1091,7 @@ g4
 
 library(cowplot)
 
-Figure2=plot_grid(g1, g2, g3, g4, labels=c("A","B","C","D"), ncol = 2, nrow = 2, rel_widths=c(1.5,2.1),label_size = 30)
-Figure2
+Figure3=plot_grid(g1, g2, g3, g4, labels=c("A","B","C","D"), ncol = 2, nrow = 2, rel_widths=c(1.5,2.1),label_size = 30)
+Figure3
 
-ggsave("Figure2.pdf", height = 16)
+ggsave("Figure3.pdf", height = 16)
