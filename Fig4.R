@@ -1,4 +1,4 @@
-## >>>>>>>>>>>> Script for Figure 4 <<<<<<<<<<<
+## >>>>>>>>>>>> Script for Figure 5 <<<<<<<<<<<
 
 rm(list=ls())
 
@@ -154,7 +154,7 @@ pos_gene7D=flowering_genes$Position[which(flowering_genes$Chromosome=="7D")]
 abs(pos_select7D-pos_gene7D)<=10^6
 
 
-################## Script for Figure 4 ##################
+################## Script for Figure 5 ##################
 
 pos_select1A=data_chromosome$V2[which(data_chromosome$name%in%res_chr1A)]
 pos_select1B=data_chromosome$V2[which(data_chromosome$name%in%res_chr1B)]
@@ -303,4 +303,4 @@ plot_chr_join=ggplot(data_join_chr,aes(x=chr,group=chr,y=pos_select,shape="Selec
 
 #save(plot_chr_join,file="plot_chr_join.Rdata")
 plot_chr_join
-ggsave("Figure4.pdf")
+ggsave("Figure5.pdf")
