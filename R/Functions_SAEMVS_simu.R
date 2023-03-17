@@ -1,4 +1,4 @@
-## This file contains all the functions needed to run the SAEMVS procedure on the simulation study model.
+## This file contains all the functions needed to run the SAEMVS procedure on the simulation study model presented in Section 5.2.
 ## The file "Test_Simu_SAEMVS.R" allows to combine these functions to launch the SAEMVS method on
 ## the model as presented in the simulation study.
 
