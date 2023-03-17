@@ -1,4 +1,5 @@
-### Description of reproducible codes for "Bayesian high-dimensional covariate selection in non-linear mixed-effects models using the SAEM algorithm" Naveau et al.
+### Description of reproducible codes for "Bayesian high-dimensional covariate selection in non-linear mixed-effects models using 
+the SAEM algorithm" Naveau et al.
 
 This folder contains the R codes needed to reproduce the results of the article.
 The Data folder contains the data of the real dataset used in the paper.
@@ -7,7 +8,7 @@ The Saves folder contains all the saves needed to reproduce the figures.
 
 ## Scripts for Sections 3 and 4:
 
-App_SAEMVS_ex.Rmd: This file contains an application of SAEMVS on a detailed example. The HTML version of this Markdown is included in the Supplementary Web Material. This file needs the functions that are listed in R/Functions_SAEMVS.R
+App_SAEMVS_ex.Rmd: This file contains an application of SAEMVS on a detailed example in an one-dimensional setting. The HTML version of this Markdown is included in the Supplementary Web Material. This file needs the functions that are listed in R/Functions_SAEMVS.R
 
 R/Function_SAEMVS.R: This file contains all the functions needed to run the SAEMVS procedure on the detailed example, that is:
 - SAEM_MAP: function that corresponds to the MCMC-SAEM algorithm presented in section 3 which allows to calculate the MAP estimator, Algorithm 1, appendix A.1. This function takes as input (niter, nburnin, niterMH_phi, Y, t, id, V_tilde, param_init, hyperparam, s) where all these parameters are defined above and s is the seed. It returns beta_tilde a $(p+1)\times$(niter+1) matrix where columns are the MAP estimation vector of $\tilde{\beta}$ over the iterations, and Gamma2, sigma2, alpha are vectors of size niter+1 containing the MAP estimates of $\Gamma^2$, $\sigma^2$ and $\alpha$, respectively, during the iterations.
@@ -17,9 +18,9 @@ R/Function_SAEMVS.R: This file contains all the functions needed to run the SAEM
 - Model_selection: function that corresponds to the proposed variable selection procedure SAEM-VS, Algorithm 2 in appendix A.2. It takes as input (Delta, niter, nburnin, niterMH_phi, Y, t, id, V_tilde, param_init, hyperparam, s), where Delta is the grid of nu0 values. This function returns a list that contains a graph with the regularisation plot and the value of the eBIC criterion, the selected model (the set of selected covariates), the values of the MAP estimates $\hat{\tilde{\beta}}$, $\hat{\Gamma^2}$ and $\hat{\sigma^2}$ for the selected model, the selected $\nu_0$, the values of the MAP estimates of each parameters for each value of $\nu_0$ in the grid, and the a posteriori inclusion probability of each covariates knowing $\hat{\Theta}$ for each value of $\nu_0$.
 
 
-## Scripts for Section 5: Simulation study and comparison with MCMC
+## Scripts for Section 5: Numerical experiments
 
-R/Functions_SAEMVS_simu.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model, that is all the functions present in Functions_SAEMVS but adapted according to Appendix A.3.
+R/Functions_SAEMVS_simu.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters, that is all the functions present in Functions_SAEMVS but adapted according to Appendix A.3.
 
 Fig1.R: Script to reproduce Figure 1
 
