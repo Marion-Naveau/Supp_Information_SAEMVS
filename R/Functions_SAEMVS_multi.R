@@ -15,12 +15,12 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
   #niter = number of iterations of the algorithm
   #nburnin = number of burn-in iterations (nburnin < niter)
   #niterMH_phi = number of iterations of the Metropolis Hastings algorithm for phi at S-step
-  #Y = observed data ((y_ij)_{1<=j<=J})_{1<=i<=n}
-  #t = times ((t_ij)_{1<=j<=J})_{1<=i<=n}
+  #Y = observed data ((y_ij)_{1<=j<=n_i})_{1<=i<=n}
+  #t = times ((t_ij)_{1<=j<=n_i})_{1<=i<=n}
   #id = individual identifiers
   #V_tilde = matrix n*(p+1) such as for 1<=i<=n, line i is the vector of Vtilde_i=(1,V_i) in R^(p+1)
   #param_init = initialisation of the parameters to be estimated: list(beta_tilde,alpha,Gamma,sigma2)
-  #hyperparam = list of fixed hyperparameters list(nu0,nu1,nu_Gamma,lb_Gamma,nu_sigma,lb_sigma,a,b,psi,sigma2_mu,tau), where tau=annealing parameter
+  #hyperparam = list of fixed hyperparameters list(dose,nu0,nu1,nu_sigma,lb_sigma,a,b,sigma2_mu,q,Q,d,tau), where tau=annealing parameter
   #s = seed
   
   set.seed(s)
@@ -145,8 +145,8 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
 
 SAEM_EMV <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperparam,I,s){
   #Input notations identical to SAEM_MAP except:
-  #hyperparam = list(psi,tau) where tau=annealing parameter
-  #I = set of indices l such that beta_tilde_l !=0
+  #hyperparam = list(tau,q,dose) where tau=annealing parameter
+  #I = matrix qx(p+1) representing the support of (beta_tilde)^T
   
   set.seed(s)
   n = length(unique(id))   #number of individuals
@@ -287,7 +287,6 @@ SAEM_EMV <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
   }
   
   return(list(beta_tildeEMV=beta_tilde[,,niter+1],GammaEMV=Gamma[,,niter+1],sigma2EMV=sigma2[niter+1]))
-  #return(list(beta_tilde=beta_tilde,Gamma=Gamma,sigma2=sigma2))
 }
 
 
@@ -335,34 +334,28 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
     Gammahat=res$Gamma[,,niter+1]
     alphahat=res$alpha[,niter+1]
     sigma2hat=res$sigma2[niter+1]
-    phi_hat=res$phi_hat
     nu0=Delta[u]
     threshold=sqrt(2*nu0*nu1*log(sqrt(nu1/nu0)*(1-alphahat)/alphahat)/(nu1-nu0))
 
     ## Calculation of the support
     support=matrix(NA,nrow=q,ncol=p+1)
     for (m in 1:q){
-      support[m,]=c(1,(abs(beta_tildehat[-1,m])>=threshold[m])) #indicators beta_l!=0
+      support[m,]=c(1,(abs(beta_tildehat[-1,m])>=threshold[m])) 
     }
 
 
-    result= list(threshold=threshold,support=support,beta_tildehat=beta_tildehat,Gammahat=Gammahat,alphahat=alphahat,sigma2hat=sigma2hat,phi_hat=phi_hat)
+    result= list(threshold=threshold,support=support,beta_tildehat=beta_tildehat,Gammahat=Gammahat,alphahat=alphahat,sigma2hat=sigma2hat)
     result
   }
   stopCluster(cl)
 
-  #save(threshold_support,file="threshold_support_multi_Jvar2.Rdata")
-
-  #load("threshold_support_multi_Jvar2.Rdata")
-  beta_tildehat=array(NA,dim=c(p+1,q,M)) #each column is the beta_tilde MAP estimate for the k-th value of nu0
+  beta_tildehat=array(NA,dim=c(p+1,q,M))  #each matrix (p+1)xq is the beta_tilde MAP estimate for the k-th value of nu0
   Gammahat=array(NA,dim=c(q,q,M))         #Gamma MAP estimate for each value of nu0
   sigma2hat=rep(NA,M)                      #sigma^2 MAP estimate for each value of nu0
   alphahat=matrix(NA,nrow=q,ncol=M)        #alpha MAP estimate for each value of nu0
   threshold=matrix(NA,nrow=q,ncol=M)       #threshold value for each value of nu0
   eBIC = rep(Inf,M)                        #eBIC value for each value of nu0
   support=array(NA,dim=c(q,p+1,M))        #selected support for each value of nu0 (including intercept)
-  loglike=matrix(NA,nrow=q,ncol=M)                        #log-likelihood value for each model
-  phi_hat=array(NA,dim=c(n,q,M))
   
   for (m in 1:M){
     threshold[,m]=threshold_support[[m]]$threshold
@@ -371,7 +364,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
     Gammahat[,,m]=threshold_support[[m]]$Gammahat
     sigma2hat[m]=threshold_support[[m]]$sigma2hat
     alphahat[,m]=threshold_support[[m]]$alphahat
-    phi_hat[,,m]=threshold_support[[m]]$phi_hat
   }
   
   ### Computation of eBIC
@@ -396,9 +388,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
   loglike_unique=rep(NA,l)  #idem for the log-likelihood
   for (ll in 1:l){
     I=unique_support[[ll]]
-    #for (m in 1:q){
-    #  I=c(I,list(which(unique_support[[ll]][m,]==1)))
-    #}
     res=SAEM_EMV(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init = param_init,hyperparam,I=I,s=s)
     beta_tildeEMV=res$beta_tildeEMV
     GammaEMV=res$GammaEMV
