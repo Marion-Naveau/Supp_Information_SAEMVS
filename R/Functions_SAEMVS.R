@@ -1,4 +1,4 @@
-## This file contains all the functions needed to run the SAEMVS procedure on the detailed example
+## This file contains all the functions needed to run the SAEMVS procedure on the detailed example in one-dimension setting
 
 g <- function(phi_i,psi,t_ij){
   return(psi[1]/(1+exp(-(t_ij-phi_i)/psi[2])))
