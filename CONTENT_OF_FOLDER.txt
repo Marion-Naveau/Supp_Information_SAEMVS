@@ -20,9 +20,9 @@ R/Function_SAEMVS.R: This file contains all the functions needed to run the SAEM
 
 ## Scripts for Section 5: Numerical experiments
 
-R/Simul_data_comp.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
+R/Simul_data_comp.R: This file contains a script that simulates the 100 data-sets used in the comparison study in section 5.1
 
-R/Functions_SAEMVS_multi.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
+R/Functions_SAEMVS_multi.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to compare SAEMVS with a two-step approach in section 5.1.
 
 Fig1.R: Script to reproduce Figure 1
 
