@@ -1,4 +1,4 @@
-## >>>>>>>>>>>>>>> Script for Figure 1 with example <<<<<<<<<<<<<<
+## >>>>>>>>>>>>>>> Script for Figure 2 with example <<<<<<<<<<<<<<
 
 rm(list=ls())
 
@@ -8,7 +8,7 @@ library(mvnfast)
 library(doParallel)
 library(ggpattern)
 
-######################### Example to obtain one bar from Figure 1 #########################
+######################### Example to obtain one bar from Figure 2 #########################
 
 source('R/Functions_SAEMVS_simu.R')
 
@@ -41,7 +41,6 @@ ncore = 10
 cl = makeCluster(ncore)
 registerDoParallel(cl)
 
-debut=Sys.time()
 resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","cowplot","glmnet")) %dopar% {
 
   print(s)
@@ -116,9 +115,6 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
   result
 }
 stopCluster(cl)
-save(resTot,file="Res_test_Fig1.Rdata")
-
-load("Saves/Res_test_Fig1.Rdata")
 
 nu0_select=rep(NA,S)
 beta_tildehat_select=matrix(0,nrow=p+1,ncol=S)
@@ -168,7 +164,7 @@ nb_includ
 
 nb_FP_FN=100-nb_exact_model-nb_cont-nb_includ
 
-######################### Script for Figure 1 #########################
+######################### Script for Figure 2 #########################
 
 rm(list=ls())
 
@@ -240,7 +236,7 @@ g2=ggplot(mapping=aes(x=p, y=count, fill=p,pattern=Result))+ geom_bar_pattern(da
   theme_bw()+theme(axis.text.x = element_blank(),axis.ticks.x = element_blank(),strip.text.x = element_text(size=30),axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
 g2
 
-Figure1=plot_grid(g1, g2, labels=c("A","B"), ncol = 2, nrow = 1,rel_widths=c(1.5,2.1),label_size = 30)
-Figure1
+Figure2=plot_grid(g1, g2, labels=c("A","B"), ncol = 2, nrow = 1,rel_widths=c(1.5,2.1),label_size = 30)
+Figure2
 
-ggsave("Figure1.pdf",width = 20)
+ggsave("Figure2.pdf",width = 20)
