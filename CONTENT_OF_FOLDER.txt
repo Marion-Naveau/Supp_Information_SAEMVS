@@ -8,7 +8,7 @@ The Saves folder contains all the saves needed to reproduce the figures.
 
 ## Scripts for Sections 3 and 4:
 
-App_SAEMVS_ex.Rmd: This file contains an application of SAEMVS on a detailed example in an one-dimensional setting. The HTML version of this Markdown is included in the Supplementary Web Material. This file needs the functions that are listed in R/Functions_SAEMVS.R
+App_SAEMVS_ex.Rmd: This file contains an application of SAEMVS on a detailed example in an one-dimensional setting. This file needs the functions that are listed in R/Functions_SAEMVS.R
 
 R/Function_SAEMVS.R: This file contains all the functions needed to run the SAEMVS procedure on the detailed example, that is:
 - SAEM_MAP: function that corresponds to the MCMC-SAEM algorithm presented in section 3 which allows to calculate the MAP estimator, Algorithm 1, appendix A.1. This function takes as input (niter, nburnin, niterMH_phi, Y, t, id, V_tilde, param_init, hyperparam, s) where all these parameters are defined above and s is the seed. It returns beta_tilde a $(p+1)\times$(niter+1) matrix where columns are the MAP estimation vector of $\tilde{\beta}$ over the iterations, and Gamma2, sigma2, alpha are vectors of size niter+1 containing the MAP estimates of $\Gamma^2$, $\sigma^2$ and $\alpha$, respectively, during the iterations.
@@ -20,11 +20,19 @@ R/Function_SAEMVS.R: This file contains all the functions needed to run the SAEM
 
 ## Scripts for Section 5: Numerical experiments
 
-R/Functions_SAEMVS_simu.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters, that is all the functions present in Functions_SAEMVS but adapted according to Appendix A.3.
+R/Simul_data_comp.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
+
+R/Functions_SAEMVS_multi.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
 
 Fig1.R: Script to reproduce Figure 1
 
+FigA1.R: Script to reproduce Figure A1
+
+R/Functions_SAEMVS_simu.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
+
 Fig2.R: Script to reproduce Figure 2
+
+Fig3.R: Script to reproduce Figure 3
 
 Computation_time_MCMC-SAEM.R: Script to determine the computation time of MCMC-SAEM in the case that is presented in the sub-section 5.4
 
@@ -32,20 +40,20 @@ Computation_time_MCMC.R: Script to determine the computation time of an MCMC pro
 
 R/nimble_fit_functions.R: This file contains functions required for the efficient C++ implementation of a random walk adaptive MCMC used in Sub-section 5.4 through the Nimble software.
 
-Fig3.R: Script to reproduce Figure 3
+Fig4.R: Script to reproduce Figure 4
 
-Test_Simu_SAEMVS.R: This file allows to combine the functions of the file "Functions_SAEMVS_simu.R" to launch the SAEMVS method on the model as presented in the simulation study Section 5 on one simulated data-set.
+Test_Simu_SAEMVS.R: This file allows to combine the functions of the file "Functions_SAEMVS_simu.R" to launch the SAEMVS method on the model as presented in the simulation study Section 5.2 on one simulated data-set.
 
 
 ## Scripts for Section 6: Application to plant senescence genetic marker identification
 
-Fig4.R: Script to reproduce Figure 4
+Fig5.R: Script to reproduce Figure 5
 
-Fig5.R: Script to reproduce Figure 5. This file needs the functions that are listed in Functions_SAEMVS_real_data.R
+Fig6.R: Script to reproduce Figure 6. This file needs the functions that are listed in Functions_SAEMVS_real_data.R
 
 R/Functions_SAEMVS_real_data.R: This file contains all the functions needed to run the SAEMVS procedure on the real dataset presented in Section 6, that is all the functions present in Functions_SAEMVS but adapted according to Section 6.
 
-Fig6.R: Script to reproduce Figure 6
+FigB2.R: Script to reproduce Figure 6
 
 
 ## Data and Rdata
