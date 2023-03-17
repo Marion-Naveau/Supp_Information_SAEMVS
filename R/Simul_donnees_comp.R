@@ -1,3 +1,5 @@
+## This file contains a script that simulates the 100 data-sets used in the comparison study in section 5.1
+
 rm(list=ls())
 
 library(ggplot2)
