@@ -26,7 +26,7 @@ R/Functions_SAEMVS_multi.R: This file contains all the functions needed to run t
 
 Fig1.R: Script to reproduce Figure 1
 
-FigA1.R: Script to reproduce Figure A1
+Fig7.R: Script to reproduce Figure 7
 
 R/Functions_SAEMVS_simu.R: This file contains all the functions needed to run the SAEMVS procedure on the simulation study model used to detail the influence of the parameters in section 5.2.
 
@@ -53,7 +53,7 @@ Fig6.R: Script to reproduce Figure 6. This file needs the functions that are lis
 
 R/Functions_SAEMVS_real_data.R: This file contains all the functions needed to run the SAEMVS procedure on the real dataset presented in Section 6, that is all the functions present in Functions_SAEMVS but adapted according to Section 6.
 
-FigB2.R: Script to reproduce Figure 6
+Fig8.R: Script to reproduce Figure 8
 
 
 ## Data and Rdata
