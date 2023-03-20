@@ -51,7 +51,7 @@ library(doParallel)
 For this example, the following logistic growth model is considered:
 $y_{ij}= \dfrac{\psi_1}{1+\exp\left(-\dfrac{t_{ij}-\varphi_i}{\psi_2}\right)}+ \varepsilon_{ij} ,\text{ with } \varepsilon_{ij} \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\sigma^2)$
 
-and $\varphi_i = \mu + \mathstrut^t{\beta} V_i+ \xi_i , \text{ with } \xi_i \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\Gamma^2),$
+and $\varphi_i = \mu + \beta^\top V_i+ \xi_i , \text{ with } \xi_i \overset{\text{i.i.d.}}{\sim} \mathcal{N}(0,\Gamma^2),$
 
 where *ψ*<sub>1</sub> and *ψ*<sub>2</sub> are known constants. This is a
 common and realistic model used in many fields of life sciences, such as
