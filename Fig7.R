@@ -1,3 +1,5 @@
+################### Script to reproduce Figure 7 ###################
+
 rm(list=ls())
 
 library(ggplot2)
