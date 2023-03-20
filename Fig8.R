@@ -1,4 +1,4 @@
-## >>>>>>>>>>>> Script for Figure B2 <<<<<<<<<<<
+## >>>>>>>>>>>> Script for Figure 8 <<<<<<<<<<<
 
 rm(list=ls())
 
@@ -60,4 +60,4 @@ ggplot(data_plot, aes(x=Date, y=Y, group=GENOTYPE,color=GENOTYPE)) + geom_point(
   geom_line(linetype = "dashed") + labs(color="VARIETIES") + ylab("Senescence (in %)") +theme_bw() +
   theme(axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),legend.title = element_text(size=15), legend.text = element_text(size=15))
 
-ggsave("FigureB2.pdf")
+ggsave("Figure8.pdf")
