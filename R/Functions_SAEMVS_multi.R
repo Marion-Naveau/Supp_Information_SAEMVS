@@ -403,7 +403,7 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
       loglike=loglike + log((2*pi*sigma2EMV)^(-N[i]/2)*1/(TT)*int[TT+1])
     }
     r=sum(I!=0)
-    unique_eBIC[ll]=-2*loglike+(r-q)*log(n)+2*log(choose(p,r-q))
+    unique_eBIC[ll]=-2*loglike+(r-q)*log(n)+2*log(choose(p*q,r-q))
   }
   for (m in 1:M){
     ll=1
