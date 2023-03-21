@@ -13,7 +13,7 @@ library(doParallel)
 
 source('R/Functions_SAEMVS_multi.R')
 
-S=10                           #number of simulated data-sets tested 
+S=1                           #number of simulated data-sets tested 
 # In the paper S=100, but for reasons of computation time,
 # in this example we put S=10 to have an execution time of about 10 min
 
@@ -41,7 +41,6 @@ cl = makeCluster(ncore)
 registerDoParallel(cl)
 
 resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","cowplot","glmnet","psych")) %dopar% {
-  
   ############# Model simulation #############
   set.seed(s)
   
@@ -68,21 +67,21 @@ resTot<-foreach(s = 1:S, .packages = c("nlme","mvnfast","doParallel","ggplot2","
   alpha_init=c(0.5,0.5)
   
   # Fixed hyperparameters
-  nu0=0.01               #spike parameter
-  nu1=1000               #slab parameter
-  nu_sigma=1             #prior parameter of sigma2
-  lb_sigma=1             #prior parameter of sigma2
-  a=c(1,1)               #prior parameter of alpha
-  b=c(p,p)               #prior parameter of alpha
-  sigma2_mu=5^2          #prior parameter of mu
-  Q=0.2*diag(1,q)        #prior parameter of Gamma
-  d=q+2                  #prior parameter of Gamma
+  nu0=0.01                         #spike parameter
+  nu1=1000                         #slab parameter
+  nu_sigma=1                       #prior parameter of sigma2
+  lb_sigma=1                       #prior parameter of sigma2
+  a=c(1,1)                         #prior parameter of alpha
+  b=c(p,p)                         #prior parameter of alpha
+  sigma2_mu=5^2                    #prior parameter of mu
+  Sigma_Gamma=0.2*diag(1,q)        #prior parameter of Gamma
+  d=q+2                            #prior parameter of Gamma
   
   tau=0.98               #annealing parameter
   
   #Initialisation
   param_init=list(beta_tilde=betatilde_init,alpha=alpha_init,Gamma=Gamma_init,sigma2=sigma2_init)
-  hyperparam=list(dose=dose,nu0=nu0,nu1=nu1,nu_sigma=nu_sigma,lb_sigma=lb_sigma,a=a,b=b,sigma2_mu=sigma2_mu,q=q,Q=Q,d=d,tau=tau)
+  hyperparam=list(dose=dose,nu0=nu0,nu1=nu1,nu_sigma=nu_sigma,lb_sigma=lb_sigma,a=a,b=b,sigma2_mu=sigma2_mu,q=q,Sigma_Gamma=Sigma_Gamma,d=d,tau=tau)
   
   ############# SAEMVS #############
   res=Model_selection(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperparam,s=s)
@@ -493,6 +492,7 @@ rm(list=ls())
 
 library(ggplot2)
 library(ggpattern)
+library(cowplot)
 
 # The saved results are retrieved:
 file_name_SAEMVS=c("Saves/betahat1_simuSA1.Rdata","Saves/betahat1_simuSA2.Rdata","Saves/betahat1_simuSA3.Rdata",
@@ -583,7 +583,7 @@ data_phi1$Method<-as.factor(data_phi1$Method)
 
 g1=ggplot(mapping=aes(x=p_partial, y=count, fill=Method,pattern=Result)) +geom_col(data=data_phi1[data_phi1$Result=="Strictly included",], aes(group = Method), width = 0.7, position = position_dodge(width = 0.7),color="black")+ geom_bar_pattern(data=data_phi1[data_phi1$Result=="Exact",], position="dodge",width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="Percentage of partially observed individuals (in %)", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c(Exact="stripe","Strictly included"="none"))+
-  theme_minimal()+theme(axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.position='none')+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
 g1
 
 ########## Figure 1B: for the second individual parameter ##########
@@ -677,10 +677,10 @@ data_phi1$Method<-as.factor(data_phi1$Method)
 
 g2=ggplot(mapping=aes(x=p_partial, y=count, fill=Method,pattern=Result)) +geom_col(data=data_phi1[data_phi1$Result=="Strictly included",], aes(group = Method), width = 0.7, position = position_dodge(width = 0.7),color="black")+ geom_bar_pattern(data=data_phi1[data_phi1$Result=="Exact",], position="dodge",width=0.7,color="black",pattern_fill="black",pattern_density=0.05,pattern_spacing=0.025,stat='identity')+
   labs(x="Percentage of partially observed individuals (in %)", y = "Proportion (in %)") +scale_fill_brewer(palette="Set2")+ scale_y_continuous(breaks=seq(0,100,10),limits = c(0,100))+ scale_pattern_manual(values = c(Exact="stripe","Strictly included"="none"))+
-  theme_minimal()+theme(axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
+  theme_bw()+theme(axis.text=element_text(size=30), axis.title=element_text(size=30,face="bold"),title=element_text(size=30,face="bold"),legend.title = element_text(size=30,face="bold"),legend.text = element_text(size=30))+guides(pattern=guide_legend(override.aes = list(fill="white")),fill=guide_legend(override.aes = list(pattern="none")))
 g2
 
-Figure1=plot_grid(g1, g2, labels=c("A","B"), ncol = 2, nrow = 1,rel_widths=c(1.5,2.1),label_size = 30)
+Figure1=plot_grid(g1, g2, labels=c("a","b"), ncol = 2, nrow = 1,rel_widths=c(1.5,2),label_size = 30)
 Figure1
 
-ggsave("Figure1.pdf",width = 20,height=8)
+ggsave("Fig1.eps",device="eps", width = 30)

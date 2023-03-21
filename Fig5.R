@@ -301,6 +301,4 @@ plot_chr_join=ggplot(data_join_chr,aes(x=chr,group=chr,y=pos_select,shape="Selec
                                     colour = "white")
   )
 
-#save(plot_chr_join,file="plot_chr_join.Rdata")
-plot_chr_join
-ggsave("Figure5.pdf")
+ggsave("Fig5.eps",device="eps")

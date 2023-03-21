@@ -1091,7 +1091,7 @@ g4
 
 library(cowplot)
 
-Figure3=plot_grid(g1, g2, g3, g4, labels=c("A","B","C","D"), ncol = 2, nrow = 2, rel_widths=c(1.5,2.1),label_size = 30)
+Figure3=plot_grid(g1, g2, g3, g4, labels=c("a","b","c","d"), ncol = 2, nrow = 2, rel_widths=c(1.5,2.1),label_size = 30)
 Figure3
 
-ggsave("Figure3.pdf", height = 16)
+ggsave("Fig3.eps", device="eps", height = 16)

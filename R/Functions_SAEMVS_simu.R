@@ -359,7 +359,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
   threshold=rep(NA,M)                      #threshold value for each value of nu0
   eBIC = rep(Inf,M)                        #eBIC value for each value of nu0
   support=matrix(NA,nrow=p+1,ncol=M)       #selected support for each value of nu0 (including intercept)
-  loglike=rep(NA,M)                        #log-likelihood value for each model
 
   load("threshold_support.Rdata")
   for (m in 1:M){
@@ -391,7 +390,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
   }
   l=dim(unique_support)[2]
   unique_eBIC=rep(NA,l)     #vector containing the eBIC associated with these unique supports
-  loglike_unique=rep(NA,l)  #idem for the log-likelihood
   for (ll in 1:l){
     I=which(unique_support[,ll]==1)
     d=length(I)
@@ -401,7 +399,7 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
       Gamma2EMV=res$Gamma2EMV
       sigma2EMV=res$sigma2EMV
       psiEMV=res$psiEMV
-      loglike_unique[ll]=0
+      loglike=0
       TT=5000
       for (i in 1:n){
         int=rep(0,TT+1)
@@ -410,13 +408,13 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
           mco= (yi[,i]-g(phi_i[tt],psiEMV,ti[,i]))^2
           int[tt+1]=int[tt]+exp(-sum(mco)/(2*sigma2EMV))
         }
-        loglike_unique[ll]=loglike_unique[ll] + log((2*pi*sigma2EMV)^(-J/2)*1/(TT)*int[TT+1])
+        loglike=loglike + log((2*pi*sigma2EMV)^(-J/2)*1/(TT)*int[TT+1])
       }
     }
     if (d==0){
-      loglike_unique[ll]=-Inf
+      loglike=-Inf
     }
-    unique_eBIC[ll]=-2*loglike_unique[ll]+(d-1)*log(n)+2*log(choose(p,d-1))
+    unique_eBIC[ll]=-2*loglike+(d-1)*log(n)+2*log(choose(p,d-1))
   }
   for (m in 1:M){
     ll=1
@@ -424,7 +422,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
       ll=ll+1
     }
     eBIC[m]=unique_eBIC[ll]
-    loglike[m]=loglike_unique[ll]
   }
 
   Id=rep(c(1:(p+2)),M)
@@ -451,5 +448,5 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V
   Gamma2hat_select=Gamma2hat[indmin]
   sigma2hat_select=sigma2hat[indmin]
   psihat_select=etahat[,indmin]
-  return(list(graph=graph,model_select=model_select,beta_tildehat_select=beta_tildehat_select,Gamma2hat_select=Gamma2hat_select,sigma2hat_select=sigma2hat_select,psihat_select=psihat_select,nu0_select=nu0_select,threshold=threshold,beta_tildehat=beta_tildehat,alphahat=alphahat,sigma2hat=sigma2hat,Gamma2hat=Gamma2hat,etahat=etahat,loglike=loglike))
+  return(list(graph=graph,model_select=model_select,beta_tildehat_select=beta_tildehat_select,Gamma2hat_select=Gamma2hat_select,sigma2hat_select=sigma2hat_select,psihat_select=psihat_select,nu0_select=nu0_select,threshold=threshold,beta_tildehat=beta_tildehat,alphahat=alphahat,sigma2hat=sigma2hat,Gamma2hat=Gamma2hat,etahat=etahat))
 }

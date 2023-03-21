@@ -328,4 +328,4 @@ res <- Model_selection(Delta,niter,nburnin,niterMH_phi,niterMH_psi,Y,t,id,V_tild
 load("Saves/Res_real_chr6A.Rdata")
 res$graph
 
-ggsave("Figure6.pdf")
+ggsave("Fig6.eps", device="eps")

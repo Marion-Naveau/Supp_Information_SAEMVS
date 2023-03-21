@@ -20,7 +20,7 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
   #id = individual identifiers
   #V_tilde = matrix n*(p+1) such as for 1<=i<=n, line i is the vector of Vtilde_i=(1,V_i) in R^(p+1)
   #param_init = initialisation of the parameters to be estimated: list(beta_tilde,alpha,Gamma,sigma2)
-  #hyperparam = list of fixed hyperparameters list(dose,nu0,nu1,nu_sigma,lb_sigma,a,b,sigma2_mu,q,Q,d,tau), where tau=annealing parameter
+  #hyperparam = list of fixed hyperparameters list(dose,nu0,nu1,nu_sigma,lb_sigma,a,b,sigma2_mu,q,Sigma_Gamma,d,tau), where tau=annealing parameter
   #s = seed
   
   set.seed(s)
@@ -51,7 +51,7 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
   b=hyperparam$b
   q=hyperparam$q
   sigma2_mu=hyperparam$sigma2_mu
-  Q=hyperparam$Q
+  Sigma_Gamma=hyperparam$Sigma_Gamma
   d=hyperparam$d
   tau=hyperparam$tau
   dose=hyperparam$dose
@@ -128,7 +128,7 @@ SAEM_MAP <- function(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init,hyperpa
       alpha[m,k+1]=(sum(p_star_k[,m])+a[m]-1)/(p+b[m]+a[m]-2)
     }
     
-    argmaxGamma=(Q+s2[,,k+1]-t(V_tilde%*%beta_tilde[,,k+1])%*%s3[,,k+1]-t(s3[,,k+1])%*%V_tilde%*%beta_tilde[,,k+1]+t(beta_tilde[,,k+1])%*%t(V_tilde)%*%V_tilde%*%beta_tilde[,,k+1])/(n+d+q+1)
+    argmaxGamma=(Sigma_Gamma+s2[,,k+1]-t(V_tilde%*%beta_tilde[,,k+1])%*%s3[,,k+1]-t(s3[,,k+1])%*%V_tilde%*%beta_tilde[,,k+1]+t(beta_tilde[,,k+1])%*%t(V_tilde)%*%V_tilde%*%beta_tilde[,,k+1])/(n+d+q+1)
     if (tr(t(tau*Gamma[,,k])%*%(tau*Gamma[,,k]))>tr(t(argmaxGamma)%*%argmaxGamma)){
       Gamma[,,k+1]=tau*Gamma[,,k]
     } else {
@@ -385,14 +385,13 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
   }
   l=length(unique_support)
   unique_eBIC=rep(NA,l)     #vector containing the eBIC associated with these unique supports
-  loglike_unique=rep(NA,l)  #idem for the log-likelihood
   for (ll in 1:l){
     I=unique_support[[ll]]
     res=SAEM_EMV(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init = param_init,hyperparam,I=I,s=s)
     beta_tildeEMV=res$beta_tildeEMV
     GammaEMV=res$GammaEMV
     sigma2EMV=res$sigma2EMV
-    loglike_unique[ll]=0
+    loglike=0
     TT=5000
     for (i in 1:n){
       int=rep(0,TT+1)
@@ -401,10 +400,10 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
         mco= (yi[[i]]-g(dose,ti[[i]],phi_i))^2
         int[tt+1]=int[tt]+exp(-sum(mco)/(2*sigma2EMV))
       }
-      loglike_unique[ll]=loglike_unique[ll] + log((2*pi*sigma2EMV)^(-N[i]/2)*1/(TT)*int[TT+1])
+      loglike=loglike + log((2*pi*sigma2EMV)^(-N[i]/2)*1/(TT)*int[TT+1])
     }
     r=sum(I!=0)
-    unique_eBIC[ll]=-2*loglike_unique[ll]+(r-q)*log(n)+2*log(choose(p,r-q))
+    unique_eBIC[ll]=-2*loglike+(r-q)*log(n)+2*log(choose(p,r-q))
   }
   for (m in 1:M){
     ll=1
@@ -412,7 +411,6 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
       ll=ll+1
     }
     eBIC[m]=unique_eBIC[ll]
-    loglike[m]=loglike_unique[ll]
   }
   
   Id=rep(c(1:(p+2)),M)

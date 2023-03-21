@@ -51,4 +51,4 @@ Figure4=ggplot(data_time,aes(x=p,y=Time,color=Method))+geom_point()+labs(y="Time
   geom_smooth(method="lm",se=FALSE)+stat_regline_equation() + theme(axis.text=element_text(size=20), axis.title=element_text(size=20,face="bold"),title=element_text(size=20,face="bold"),legend.title = element_text(size=20,face="bold"),legend.text = element_text(size=20))
 Figure4
 
-ggsave("Figure4.pdf")
+ggsave("Fig4.eps",device="eps")
