@@ -683,4 +683,4 @@ g2
 Figure1=plot_grid(g1, g2, labels=c("a","b"), ncol = 2, nrow = 1,rel_widths=c(1.5,2),label_size = 30)
 Figure1
 
-ggsave("Fig1.eps",device="eps", width = 30)
+ggsave("Fig1.eps",device="eps", width = 30,height = 10)
