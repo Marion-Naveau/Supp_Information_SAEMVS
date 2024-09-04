@@ -307,7 +307,7 @@ Model_selection <- function(Delta,niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param
   unique_eBIC=rep(NA,l)     #vector containing the eBIC associated with these unique supports
   for (ll in 1:l){
     I=which(unique_support[,ll]==1)
-    d=length(I)
+    d=length(I)-1
     if (d!=0){
       res=SAEM_EMV(niter,nburnin,niterMH_phi,Y,t,id,V_tilde,param_init = param_init,hyperparam=list(tau=0.98,psi=psi),I=I,s=s)
       beta_tildeEMV=res$beta_tildeEMV
